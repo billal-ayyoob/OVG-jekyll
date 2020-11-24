@@ -1,0 +1,89 @@
+---
+layout: default
+title: Recording Video
+---
+<div id="content" class="page col-full">
+
+    <section id="main" class="fullwidth">
+
+        <article class="post-264 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form role="search" method="get" id="kbsearchform" action="{{site.baseurl}}/knowledgebase/recording-video">
+                    <div class="knowledgebase-search">
+                        <input type="text" value="" name="s" id="s"><span><input type="submit" id="searchsubmit" value="Search"></span><br>
+                        <input type="hidden" name="post_type" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2>Recording video</h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2014-08-28T18:09:46+00:00" pubdate="">Last Updated: 6 years ago</time> in&nbsp;<a href="{{site.baseurl}}/kb/indigo-tools/">Indigo Tools</a>	            	        </p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <h3>Recording Video with Indigo Tools</h3>
+                        <p><strong>STEP 1:&nbsp;</strong>Click the record button on the main&nbsp;screen as indicated&nbsp;in the picture:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037.png"><img class="alignnone size-large wp-image-535" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037-1024x550.png" alt="2014-08-28_1037" width="1024" height="550" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037-1024x550.png 1024w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037-256x137.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037-300x161.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037-250x134.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037-512x275.png 512w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1037.png 1596w" sizes="(max-width: 1024px) 100vw, 1024px"></a></p>
+                        <p><strong>STEP 2:&nbsp;</strong>The&nbsp;recording options dialog box&nbsp;will appear. Here you can change the name of the “take” (which just refers to the video recording). The take names don’t have to be unique. You can use the same name each time if you want, or for a whole series of different takes.&nbsp;To start recording, click the OK button.</p>
+                        <p>In version 1.2 of Indigo&nbsp;Tools there&nbsp;is only the option to record to RAW video, but&nbsp;more formats will be supported in the&nbsp;future.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1041.png"><img class="alignnone size-full wp-image-536" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1041.png" alt="2014-08-28_1041" width="323" height="157" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1041.png 323w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1041-256x124.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1041-300x145.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1041-250x121.png 250w" sizes="(max-width: 323px) 100vw, 323px"></a></p>
+                        <p>&nbsp;</p>
+                        <p><strong>STEP 3:</strong>&nbsp;The video will now be recording. Information about the recording process is printed in the upper left corner of the main window&nbsp;as the recording takes place.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045.png"><img class="alignnone size-full wp-image-537" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045.png" alt="2014-08-28_1045" width="563" height="153" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045.png 563w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045-256x69.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045-300x81.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045-250x67.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1045-512x139.png 512w" sizes="(max-width: 563px) 100vw, 563px"></a></p>
+                        <p>On the first line, the&nbsp;values are:</p>
+                        <ul>
+                            <li>The total amount of data written to disk. Note that since this is RAW video, the&nbsp;disk space required to record is fairly substantial.&nbsp;Each frame can be from&nbsp;1.25 to 1.8&nbsp;MB, and&nbsp;at 60 FPS that&nbsp;means 70 – 103 MB/s. The frame size varies depending on whether you have stitching enabled. When there is no stitching, the disk space required per second will be (752*480*60*5)/1024/1024=103.2MB/s. When&nbsp;stitching is enabled,&nbsp;it will be slightly less&nbsp;since ~20% of each sensor&nbsp;frame that overlaps with an&nbsp;adjacent sensor frame will be de-duplicated by blending it with its neighbor.</li>
+                            <li>The second&nbsp;value&nbsp;tells you how much disk space is&nbsp;remaining. This&nbsp;refers to the free space available on the disk that holds the recording folder.</li>
+                        </ul>
+                        <p>The second line&nbsp;has values that pertain to the&nbsp;measured recording rate and the&nbsp;queueing information:</p>
+                        <ul>
+                            <li>The first value gives the MB/s&nbsp;that&nbsp;the software is actually writing to disk. Normally this is the same as the camera&nbsp;data rate unless your disk is slower than the&nbsp;camera data rate.&nbsp;For the&nbsp;Omni 60&nbsp;camera this is unlikely since the maximum rate&nbsp;for&nbsp;RAW bayer will be 103MB where&nbsp;standard disk rates are usually in the&nbsp;150 – 250 MB/s range.</li>
+                            <li>The second value&nbsp;is the number of frames that are currently queued to be written to disk. If the operating system throttles Indigo Tools because the disk has become busy with something higher priority, then&nbsp;this number will accumulate with the frames that we haven’t yet been able to write to disk.&nbsp;In normal&nbsp;working&nbsp;condition this number will generally remain very low and stay low indefinitely. If it climbs&nbsp;too high the software will begin to drop frames.</li>
+                            <li>The last number gives the number of&nbsp;frames dropped. Frames drop are&nbsp;not&nbsp;desirable of course and will&nbsp;mean the recording will be less than 60 FPS.</li>
+                        </ul>
+                        <p><strong>STEP 4:&nbsp;</strong>Click the record button again (it will be a square icon now)&nbsp;to stop the recording.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1144.png"><img class="alignnone size-full wp-image-545" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1144.png" alt="2014-08-28_1144" width="459" height="178" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1144.png 459w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1144-256x99.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1144-300x116.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1144-250x96.png 250w" sizes="(max-width: 459px) 100vw, 459px"></a></p>
+                        <p>This will open the&nbsp;video recording as the main screen, and&nbsp;from there you can export,&nbsp;rename, and&nbsp;delete the video.&nbsp;If you recorded from Raw mode,&nbsp;there will also be a color processing pop-up available on this screen to change the demosaicing and color processing options during post.</p>
+                        <p>Click the left arrow button on the upper&nbsp;left of the screen to&nbsp;return to live mode.</p>
+                        <h3>Data rates&nbsp;and color processing</h3>
+                        <p>The&nbsp;raw sensor output from the Omni 60 is&nbsp;standard Bayer&nbsp;pattern (see the wikipedia article <a href="http://en.wikipedia.org/wiki/Bayer_filter" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://en.wikipedia.org']);" target="_blank">here</a>).&nbsp;The raw output of the color camera looks like this:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116.png"><img class="alignnone wp-image-542" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116-300x189.png" alt="2014-08-28_1116" width="425" height="268" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116-300x189.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116-256x161.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116-250x157.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116-512x322.png 512w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1116.png 1000w" sizes="(max-width: 425px) 100vw, 425px"></a></p>
+                        <p>Each block of 2 x 2 pixels has two green pixels, one blue pixel, and one red pixel.&nbsp;A process known as <em>demosaicing </em>is required to convert a bayer pattern image to an RGB image. This process&nbsp;is unfortunately not as simple as separating the three colors into three separate color planes, since&nbsp;the data is really a mix of spatial as well as chroma information. On the other hand,&nbsp;bayer pattern gives a very compact way of storing color information in an image without increasing the&nbsp;image size, as compared to other&nbsp;standard pixel formats such as YUV420 which always increase the data size by 1.5x or more (the original luminance image Y, and then downsampled chroma images U and V).&nbsp;For this reason bayer pattern&nbsp;is the&nbsp;standard&nbsp;format that&nbsp;virtually&nbsp;all image sensors use.</p>
+                        <p>The Indigo SDK and&nbsp;Tools provide a few <em>pipelines</em>&nbsp;that dictate where and when the&nbsp;demosaicing happens:</p>
+                        <ul>
+                            <li>Raw: demosaicing happens in the display layer, as a post-processing step. Video files contain the bayer pattern data, not the RGB data.</li>
+                            <li>CPU: demosaicing&nbsp;happens&nbsp;in the&nbsp;camera driver, in CPU. Video files contain the RGB data, not the bayer pattern data.</li>
+                            <li>OpenGL: demosaicing&nbsp;happens in the camera driver, in OpenGL (GPU). Video files contain&nbsp;the RGB data, not the bayer pattern data.</li>
+                        </ul>
+                        <p>You can choose&nbsp;which pipeline is active by selecting it&nbsp;from the camera settings pop-up:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1111.png"><img class="alignnone size-full wp-image-541" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1111.png" alt="2014-08-28_1111" width="427" height="371" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1111.png 427w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1111-256x222.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1111-300x260.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1111-250x217.png 250w" sizes="(max-width: 427px) 100vw, 427px"></a></p>
+                        <p>For recording purposes, which pipeline is active is very relevant. If you do the demosaicing before recording, the&nbsp;video&nbsp;file will be 3x the size and require 3x the bandwidth to your hard drive. For many disks 310 MB/s will exceed their&nbsp;capacity and you won’t be able to record at 60 FPS.</p>
+                        <p>Here is a diagram showing&nbsp;the three pipelines and where they happen in relation to the recording:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2.png"><img class="alignnone wp-image-546 " src="{{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2.png" alt="" width="654" height="539" srcset="{{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2.png 1060w, {{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2-256x210.png 256w, {{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2-300x247.png 300w, {{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2-1024x843.png 1024w, {{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2-250x205.png 250w, {{site.baseurl}}/assets/images/knowledgebase/recording-pipelines2-512x421.png 512w" sizes="(max-width: 654px) 100vw, 654px"></a></p>
+                        <p>Bottom line, in order to record at 60 FPS color video you will&nbsp;probably want to stick&nbsp;to the RAW pipeline. In the future we may&nbsp;add support for YUV formats to allow&nbsp;lower bandwidth recording from the other pipelines.</p>
+                        <h3>Recording&nbsp;Folder</h3>
+                        <p>The recording directory&nbsp;is located in the folder</p>
+                        <pre>&lt;USER_FOLDER&gt;\My Documents\Occam\Recordings</pre>
+                        <p>Usually &lt;USER_FOLDER&gt; is&nbsp;something like</p>
+                        <pre>C:\Users\&lt;USERNAME&gt;</pre>
+                        <p>where USERNAME is&nbsp;your log in name.</p>
+                        <p>In Indigo Tools 1.3,&nbsp;the recording directory can be changed by&nbsp;going to Recording | Set Recordings Directory in the main menu.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1058.png"><img class="alignnone size-full wp-image-538" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1058.png" alt="2014-08-28_1058" width="386" height="178" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1058.png 386w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1058-256x118.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1058-300x138.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1058-250x115.png 250w" sizes="(max-width: 386px) 100vw, 386px"></a></p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1100.png"><img class="alignnone size-full wp-image-539" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1100.png" alt="2014-08-28_1100" width="506" height="113" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1100.png 506w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1100-256x57.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1100-300x66.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1100-250x55.png 250w" sizes="(max-width: 506px) 100vw, 506px"></a></p>
+                        <p>You can&nbsp;manually enter the name or click Browse to select&nbsp;the recording directory via the&nbsp;standard Windows directory select dialog box.</p>
+                        <p>The recording directory will contain <em>.rec</em> and <em>.aux0</em> files, for example:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152.png"><img class="alignnone size-full wp-image-547" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152.png" alt="2014-08-28_1152" width="696" height="324" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152.png 696w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152-256x119.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152-300x139.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152-250x116.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-28_1152-512x238.png 512w" sizes="(max-width: 696px) 100vw, 696px"></a></p>
+                        <p>The&nbsp;<em>.rec&nbsp;</em>files are a&nbsp;sqlite3-based index file that gives metadata about each frame. The&nbsp;<em>.aux0</em> files&nbsp;contain the raw video frame data. Each recording as a unique ID as well as the user given name (accessible when starting the recording&nbsp;and via the rename function).</p>
+                        <p>You can copy these files out of the recording directory&nbsp;to move them to other medium or whatever you like, but be sure&nbsp;to keep&nbsp;the files that correspond to a single recording together.</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>

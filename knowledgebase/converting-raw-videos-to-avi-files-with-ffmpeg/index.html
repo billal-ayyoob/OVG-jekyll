@@ -1,0 +1,71 @@
+---
+layout: default
+title: Converting Raw Videos TO AVI Files With ffmpeg
+---
+
+<div id="content" class="page col-full">
+
+
+    <section id="main" class="fullwidth">
+
+
+        <article class="post-271 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form role="search" method="get" id="kbsearchform" action="{{site.baseurl}}/knowledgebase/converting-raw-videos-to-avi-files-with-ffmpeg/">
+                    <div class="knowledgebase-search">
+                        <input type="text" value="" name="s" id="s"><span><input type="submit" id="searchsubmit" value="Search"></span><br>
+                        <input type="hidden" name="post_type" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2>Converting RAW videos to AVI files with ffmpeg</h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2014-08-28T05:23:56+00:00" pubdate="">Last Updated: 6 years ago</time> in&nbsp;<a href="{{site.baseurl}}/kb/indigo-tools/">Indigo Tools</a>	            	        </p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <p>The recording functions in Indigo Tools&nbsp;record to a proprietary&nbsp;RAW video format. As of version of 1.2 of Indigo Tools, there is no way to&nbsp;directly emit&nbsp;AVI files from the software.&nbsp;We are working on this feature as well as including support for reading&nbsp;the&nbsp;RAW video files&nbsp;using the Indigo SDK.</p>
+                        <p>The software does provide a function to export RAW videos to&nbsp;image sequences,&nbsp;and&nbsp;using this you can generate AVI files easily. There is just an extra step of exporting&nbsp;PNG or JPG files for each frame first.</p>
+                        <p><strong>STEP 1:&nbsp;</strong>open the recording in Indigo Tools, by selecting the recording list button in the main screen.&nbsp;When the popup appears, click on the video you want to&nbsp;convert.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232.png"><img class="alignnone size-full wp-image-520" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232.png" alt="2014-08-27_2232" width="818" height="636" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232.png 818w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232-256x199.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232-300x233.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232-250x194.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2232-512x398.png 512w" sizes="(max-width: 818px) 100vw, 818px"></a></p>
+                        <p><strong>STEP 2:</strong>&nbsp;The video file&nbsp;will open. Now click the export button in the toolbar&nbsp;to begin the process of exporting to&nbsp;image files.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234.png"><img class="alignnone size-full wp-image-521" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234.png" alt="2014-08-27_2234" width="820" height="639" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234.png 820w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234-256x199.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234-300x233.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234-250x194.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2234-512x398.png 512w" sizes="(max-width: 820px) 100vw, 820px"></a></p>
+                        <p><strong>STEP 3:</strong> When the export options dialog box appears, click Browse to select the output folder and then click OK.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2236.png"><img class="alignnone size-full wp-image-522" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2236.png" alt="2014-08-27_2236" width="426" height="165" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2236.png 426w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2236-256x99.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2236-300x116.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2236-250x96.png 250w" sizes="(max-width: 426px) 100vw, 426px"></a></p>
+                        <p><strong>STEP 4:</strong> The files will now convert and appear as a set of files&nbsp;in a subdirectory of&nbsp;the&nbsp;directory you selected. The name of first subdirectory will be the&nbsp;the video’s name&nbsp;followed by its unique ID, and then another subdirectory called “images”.</p>
+                        <p><img class="alignnone size-full wp-image-523" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2241.png" alt="2014-08-27_2241" width="531" height="130" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2241.png 531w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2241-256x62.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2241-300x73.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2241-250x61.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2241-512x125.png 512w" sizes="(max-width: 531px) 100vw, 531px"></p>
+                        <p>&nbsp;</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245.png"><img class="alignnone size-full wp-image-524" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245.png" alt="2014-08-27_2245" width="721" height="326" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245.png 721w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245-256x115.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245-300x135.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245-250x113.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2245-512x231.png 512w" sizes="(max-width: 721px) 100vw, 721px"></a></p>
+                        <p>&nbsp;</p>
+                        <p><strong>STEP 5:</strong>&nbsp;The next step will be to&nbsp;convert the still images to an AVI file using the ffmpeg command line tool. If you&nbsp;already have ffmpeg installed you can skip this&nbsp;step.</p>
+                        <p>You can download&nbsp;Windows binaries of&nbsp;ffmpeg <a href="http://ffmpeg.zeranoe.com/builds/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://ffmpeg.zeranoe.com']);" target="_blank">here</a>.&nbsp;We’ll assume you unpacked&nbsp;these files to c:\ffmpeg. You’ll want to open a terminal by clicking Start, Run, and running the&nbsp;“cmd” program.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2252.png"><img class="alignnone size-full wp-image-525" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2252.png" alt="2014-08-27_2252" width="413" height="213" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2252.png 413w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2252-256x132.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2252-300x154.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2252-250x128.png 250w" sizes="(max-width: 413px) 100vw, 413px"></a></p>
+                        <p>&nbsp;</p>
+                        <p>Then add the ffmpeg directory to your path by entering</p>
+                        <pre>@set PATH=c:\ffmpeg\bin;%PATH%</pre>
+                        <p>at the prompt.</p>
+                        <p>&nbsp;</p>
+                        <p><strong>STEP 6:</strong> go&nbsp;to the directory where the videos&nbsp;got unpacked by entering the directory just underneath where the&nbsp;images were put.</p>
+                        <p>At the prompt, enter:</p>
+                        <pre>e:</pre>
+                        <pre>cd&nbsp;E:\exports\hackaday_2_take4-3eaf1bc7bc6c99a3ae4a13f08d7ff884</pre>
+                        <p><strong>STEP 7:</strong> now you can run&nbsp;ffmpeg to&nbsp;convert&nbsp;the&nbsp;image files into a single AVI.&nbsp;ffmpeg is a huge program with&nbsp;support for a lot of codecs and video/audio&nbsp;containers. You’ll want to refer to the full&nbsp;ffmpeg documentation on the ffmpeg web site <a href="https://www.ffmpeg.org/documentation.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.ffmpeg.org']);" target="_blank">here</a>.</p>
+                        <p>Here we’ll show just the basic form of the command to create an AVI file. At the prompt, enter:</p>
+                        <pre>ffmpeg -f image2 -r 60 -i images/%d.jpg -b:v 500k test60.avi</pre>
+                        <p>You’ll want to play around with the bitrate option “-b:v” and other codec options to control the output format and quality.</p>
+                        <p>Once ffmpeg will process the&nbsp;files you&nbsp;will be left with a single avi file that has a frame per each&nbsp;image&nbsp;in the images subdirectory.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2306.png"><img class="alignnone size-full wp-image-527" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2306.png" alt="2014-08-27_2306" width="498" height="425" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2306.png 498w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2306-256x218.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2306-300x256.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2306-250x213.png 250w" sizes="(max-width: 498px) 100vw, 498px"></a></p>
+                        <p>&nbsp;</p>
+                        <p>You should be able to open the video with Windows Media Player or VLC, which you can download <a href="http://www.videolan.org/vlc/download-windows.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.videolan.org']);" target="_blank">here</a>.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301.png"><img class="alignnone size-large wp-image-526" src="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301-1024x300.png" alt="2014-08-27_2301" width="1024" height="300" srcset="{{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301-1024x300.png 1024w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301-256x75.png 256w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301-300x87.png 300w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301-250x73.png 250w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301-512x150.png 512w, {{site.baseurl}}/assets/images/knowledgebase/2014-08-27_2301.png 1307w" sizes="(max-width: 1024px) 100vw, 1024px"></a></p>
+                        <p>&nbsp;</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+            
+        </article><!-- /.post -->
+        
+    </section><!-- /#main -->
+    
+</div>

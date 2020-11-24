@@ -1,0 +1,96 @@
+<section class="col-full col-4 fix" id="footer-widgets">
+	<div class="block footer-widget-1">
+    	<div class="widget widget_nav_menu" id="nav_menu-3">
+        	<div class="menu-bottom-menu-container">
+            	<ul class="menu" id="menu-bottom-menu">
+					{% for link in site.data.footer-menu %}
+                    	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-116 current_page_item menu-item-747"
+                                id="menu-item-747">
+                                <a href="{{site.baseurl}}{{link.url}}">{{link.title}}</a>
+						</li>
+					{% endfor %}
+                </ul>
+                    </div>
+            </div>
+            <div class="widget acx-social-icons-desc" id="acx-social-icons-widget-3"><h3>Share + Follow Us</h3>
+                    <style>
+                        .widget-acx-social-icons-widget-3-widget img {
+                            width: 55px;
+                        }
+                    </style>
+                    <div class='acx_fsmi_float_fix widget-acx-social-icons-widget-3-widget' id='acurax_si_simple'
+                         style='text-align:left;'><a href='http://www.facebook.com/occamvisiongroup' target='_blank'
+                                                     title='Visit Us On Facebook'><img
+                            alt='Visit Us On Facebook'
+                            height='55px' src={{site.baseurl}}/assets/images/facebook.png
+                            style='border:0px;' width='55px'/></a><a
+                            href='http://www.linkedin.com/company/occam-robotics-inc' target='_blank'
+                            title='Visit Us On Linkedin'><img
+                            alt='Visit Us On Linkedin'
+                            height='55px' src={{site.baseurl}}/assets/images/linkedin.png
+                            style='border:0px;' width='55px'/></a></div>
+                </div>
+            </div>
+
+
+            <div class="block footer-widget-2">
+                <div class="widget widget_text" id="text-3">
+                    <div class="textwidget"><h1>Occam Updates</h1>
+                        <h3>Sign up for Occam Updates and our Newsletter mailing list.</h3>
+
+                        <!-- Subcription Form  -->
+                        <div class="form mc4wp-form" id="mc4wp-form-1">
+                            <form method="post"><label>Subscribe:</label>
+                                <input id="mc4wp_email" name="EMAIL" placeholder="Your email address" required
+                                       type="email"/>
+                                <p>
+                                <p>
+                                    <input type="submit" value="Subscribe"/>
+                                </p><input name="_mc4wp_required_but_not_really" type="hidden" value=""/><input
+                                        name="_mc4wp_timestamp" type="hidden" value="1596149600"/><input
+                                        name="_mc4wp_form_submit"
+                                        type="hidden"
+                                        value="1"/><input
+                                        name="_mc4wp_form_instance" type="hidden" value="1"/><input
+                                        name="_mc4wp_form_nonce"
+                                        type="hidden"
+                                        value="778f4a674c"/>
+                            </form>
+                        </div><!-- / MailChimp for WP Plugin -->
+
+                        <!--End mc_embed_signup--></div>
+                </div>
+            </div>
+
+
+            <div class="block footer-widget-3">
+                <div class="widget widget_knowledgebase_latest" id="knowledgebase_latest-3"><h3>Occam Knowledge
+                    Base</h3>
+                    <ul>
+						{% for article in site.data.footer-kb %}
+                        <li><a href="{{site.baseurl}}{{article.url}}"><i class="fa file-alt pakb-icon-doc-text"></i>{{article.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="widget widget_knowledgebase_search_posts" id="knowledgebase_search_posts-3"><h3>Search
+                    Knowledge Base</h3>
+                    <form action="http://occamvisiongroup.com/" id="kbsearchform" method="get" role="search">
+                        <input id="s" name="s" type="text" value=""/>
+                        <input name="post_type" type="hidden" value="knowledgebase"/>
+                    </form>
+                </div>
+            </div>
+
+        </section><!-- /#footer-widgets  -->
+        <footer class="col-full" id="footer">
+
+            <div class="col-left" id="copyright">
+                <p>Occam Vision Group &copy; 2020. All Rights Reserved.</p>
+            </div>
+            <div class="col-right" id="terms">
+                <a href="{{site.baseurl}}/terms-and-conditions">Terms & Conditions</a> |
+                <a href="{{site.baseurl}}/contact">Contact Us</a>
+            </div>
+
+        </footer><!-- /#footer  -->
+

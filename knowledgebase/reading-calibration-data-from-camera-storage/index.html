@@ -1,0 +1,196 @@
+---
+layout: default
+title: Reading calibration data from camera storage
+---
+
+<div class="page col-full" id="content">
+
+
+    <section class="fullwidth" id="main">
+
+
+        <article class="post-817 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form action="{{site.baseurl}}/knowledgebase/reading-calibration-data-from-camera-storage/" id="kbsearchform" method="get" role="search">
+                    <div class="knowledgebase-search">
+                        <input id="s" name="s" type="text" value=""><span><input id="searchsubmit" type="submit"
+                                                                                 value="Search"></span><br>
+                        <input name="post_type" type="hidden" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2><span id="Reading_calibration_data_from_camera_storage">Reading calibration data from camera storage</span>
+                    </h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2015-03-03T06:02:24+00:00" pubdate="">Last Updated: 5 years
+                                ago
+                            </time>
+                            in&nbsp;<a href="{{site.baseurl}}/kb/sdk-development/">SDK development</a></p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <div class="no_bullets" id="toc_container"><p class="toc_title">Contents</p>
+                            <ul class="toc_list">
+                                <li><a href="#Reading_calibration_data_from_camera_storage"><span
+                                        class="toc_number toc_depth_1">1</span> Reading calibration data from camera
+                                    storage</a></li>
+                                <li><a href="#Device_valuesrepresenting_calibration"><span
+                                        class="toc_number toc_depth_1">2</span> Device values&nbsp;representing
+                                    calibration</a></li>
+                                <li><a href="#Calibration_format_camera_model"><span
+                                        class="toc_number toc_depth_1">3</span> Calibration format / camera model</a>
+                                </li>
+                                <li><a href="#SDK_Example"><span class="toc_number toc_depth_1">4</span> SDK Example</a>
+                                </li>
+                                <li><a href="#Example_Output"><span class="toc_number toc_depth_1">5</span> Example
+                                    Output</a></li>
+                            </ul>
+                        </div>
+                        <p></p>
+                        <p>Every Occam camera is&nbsp;equipped with non-volatile EEPROM memory that is used to store&nbsp;calibration
+                            data, along with&nbsp;other&nbsp;sensor, vision module, and user settings.</p>
+                        <p>When our cameras ship with fixed optics such as the Omni series, they will be pre-calibrated
+                            at factory time and the calibration will be stored on the camera’s memory. Using Indigo
+                            Tools you can re-generate the calibration and overwrite the data that is held on the
+                            camera.</p>
+                        <p>If the calibration data is&nbsp;not set, it will be returned as canonical values (D=0,
+                            K=eye(3), R=eye(3), T=0).&nbsp;For the parts that are&nbsp;non-canonical, the values for all
+                            sensors will be within the&nbsp;same&nbsp;coordinate frame. For Omni cameras, the center of
+                            the world is in the&nbsp;center of the sensor ring. For Array it depends on the calibration&nbsp;method
+                            used, whether it is median position of&nbsp;calibration point set, or the first&nbsp;paired
+                            camera.</p>
+                        <h2><span
+                                id="Device_valuesrepresenting_calibration">Device values&nbsp;representing calibration</span>
+                        </h2>
+                        <p>When the&nbsp;driver for your device loads,&nbsp;it will read the calibration data from
+                            non-volatile memory and&nbsp;make it accessible through the following settings that you can
+                            read with the&nbsp;occamGetDeviceValuerv&nbsp;API call.</p>
+                        <p>OCCAM_SENSOR_DISTORTION_COEFS#</p>
+                        <p>OCCAM_SENSOR_INTRINSICS#</p>
+                        <p>OCCAM_SENSOR_ROTATION#</p>
+                        <p>OCCAM_SENSOR_TRANSLATION#</p>
+                        <p>Where the # is replaced with the digit 0, 1, etc, up until the number of sensors on&nbsp;the
+                            camera. You can read the</p>
+                        <p>OCCAM_SENSOR_COUNT</p>
+                        <p>setting from the camera to determine the number of sensors. For Omni series this will be
+                            fixed to 5, 10, or 15 depending on the configuration. For Array&nbsp;cameras&nbsp;it will
+                            depend on the pairing&nbsp;configuration&nbsp;that you did or&nbsp;that was done at factory.
+                            The “pairing” of cameras refers to grouping them&nbsp;under a single virtual device.&nbsp;The
+                            sensor count&nbsp;of the virtual device will be the count of constituent devices.</p>
+                        <h2><span id="Calibration_format_camera_model">Calibration format / camera model</span></h2>
+                        <p>The&nbsp;format of the calibration data is the same as is used in OpenCV, and is as
+                            follows:</p>
+                        <p>–&nbsp;OCCAM_SENSOR_DISTORTION_COEFS# This is&nbsp;vector D of 5 coefficients indicating
+                            radial and tangient coefficients representing the&nbsp;mapping from undistorted to distorted&nbsp;coordinates
+                            in normalized camera&nbsp;space (X and Y varying in [-1,1]).</p>
+                        <p>–&nbsp;OCCAM_SENSOR_INTRINSICS# This is the 3×3 matrix K of camera internal parameters in
+                            this format: [fx,0,cx;0,fy,cy;0,0,1] where fx&nbsp;and fy are the focal length multiplied by
+                            the mapping of&nbsp;pixel&nbsp;dimensions to&nbsp;metric dimensions (usually millimeters
+                            depending on how&nbsp;the calibration&nbsp;tool is configured), and cx and cy are the&nbsp;principal
+                            point of the camera.&nbsp;This matrix maps from&nbsp;normalized camera&nbsp;coordinates
+                            (distorted or not)&nbsp;to&nbsp;original image coordinates.</p>
+                        <p>–&nbsp;OCCAM_SENSOR_ROTATION# This is the 3×3 rotation matrix R&nbsp;indicating the rotation&nbsp;part
+                            of the mapping from world coordinates to normalized camera space.</p>
+                        <p>– OCCAM_SENSOR_TRANSLATION# This is the 3×1 translation vector T&nbsp;indicating the
+                            pre-rotated&nbsp;translation part of the&nbsp;mapping from world coordinates to normalized
+                            camera space.</p>
+                        <p>The full&nbsp;camera model used is the same as in OpenCV, and is also the&nbsp;standard
+                            Hartley/Zisserman projective camera model:</p>
+                        <p>xh = K*D([R;T]X)</p>
+                        <h2><span id="SDK_Example">SDK Example</span></h2>
+                        <p>Please refer to the examples/read_calib.cc&nbsp;example in the Indigo SDK for a more verbose
+                            example of how to read calibration data from a camera.</p>
+                        <h2><span id="Example_Output">Example Output</span></h2>
+                        <p>$ ./read_calib<br>
+                            camera: omnis5u3mt9v022:79fff4e28a810a00</p>
+                        <p>sensor 0:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.44821,0.232306,0.000354156,0.00165202,-0.0631369]]<br>
+                            K = [[517.36,0,374.13];[0,520.01,200.115];[0,0,1]]<br>
+                            R =
+                            [[1,0.000791722,-9.2749e-05];[-0.000791778,1,-0.000598753];[9.22749e-05,0.000598826,1]]<br>
+                            T = [[-0.383266,0.301836,-23.0616]]<br>
+                            sensor 1:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.453541,0.243334,0.00102948,0.000666533,-0.0687729]]<br>
+                            K = [[513.467,0,387.589];[0,515.589,196.805];[0,0,1]]<br>
+                            R =
+                            [[0.308474,-0.00268466,-0.951229];[0.00222121,0.999995,-0.00210198];[0.95123,-0.00146447,0.308479]]<br>
+                            T = [[-2.04496,-0.510067,-25.3537]]<br>
+                            sensor 2:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.428696,0.186455,0.0010419,0.000630139,-0.0377135]]<br>
+                            K = [[512.636,0,376.636];[0,514.277,181.63];[0,0,1]]<br>
+                            R =
+                            [[-0.808822,0.00270545,-0.588047];[0.00754549,0.999955,-0.00577782];[0.588005,-0.00911033,-0.808806]]<br>
+                            T = [[-1.0354,-4.9767,-24.6256]]<br>
+                            sensor 3:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.454364,0.240541,0.00100409,0.000646399,-0.0662772]]<br>
+                            K = [[517.499,0,387.135];[0,519.242,207.67];[0,0,1]]<br>
+                            R =
+                            [[-0.806489,-0.0231745,0.590795];[-0.0220254,0.999716,0.00914811];[-0.590839,-0.00563462,-0.80677]]<br>
+                            T = [[-0.132979,-4.2827,-23.5639]]</p>
+                        <p>sensor 4:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.454038,0.244789,0.000875864,0.00155121,-0.0699441]]<br>
+                            K = [[515.903,0,363.543];[0,518.519,208.217];[0,0,1]]<br>
+                            R =
+                            [[0.309849,-0.00773396,0.950754];[0.00604222,0.999963,0.0061651];[-0.950767,0.00383442,0.309884]]<br>
+                            T = [[-0.557794,0.724112,-24.5413]]<br>
+                            sensor 5:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.438919,0.221365,0.000573236,-0.000172672,-0.0587718]]<br>
+                            K = [[517.88,0,383.076];[0,520.345,207.827];[0,0,1]]<br>
+                            R =
+                            [[0.999739,-0.0073721,-0.0216307];[0.00725101,0.999958,-0.00567105];[0.0216716,0.00551272,0.99975]]<br>
+                            T = [[-0.1162,-122.594,-24.3255]]<br>
+                            sensor 6:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.4424,0.232244,0.00096465,0.00104117,-0.0662799]]<br>
+                            K = [[524.723,0,377.566];[0,527.138,244.883];[0,0,1]]<br>
+                            R =
+                            [[0.302794,-0.0104779,-0.952998];[0.00492329,0.999943,-0.0094298];[0.953043,-0.00183659,0.302829]]<br>
+                            T = [[-5.93322,-123.025,-24.1984]]<br>
+                            sensor 7:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.453381,0.25848,-0.000589916,0.00102728,-0.091246]]<br>
+                            K = [[520.023,0,368.401];[0,522.825,194.952];[0,0,1]]<br>
+                            R =
+                            [[-0.813031,-0.00284479,-0.582214];[0.0176941,0.999405,-0.0295922];[0.581952,-0.0343611,-0.812497]]<br>
+                            T = [[-2.08692,-126.91,-21.8086]]</p>
+                        <p>sensor 8:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.455079,0.253845,0.000404952,-3.96015e-06,-0.0816325]]<br>
+                            K = [[516.193,0,354.8];[0,518.396,192.93];[0,0,1]]<br>
+                            R =
+                            [[-0.801857,-0.0407486,0.596125];[-0.0446589,0.998969,0.00821402];[-0.595845,-0.0200358,-0.802849]]<br>
+                            T = [[2.38873,-126.946,-21.4451]]<br>
+                            sensor 9:<br>
+                            width = 752<br>
+                            height = 480<br>
+                            D = [[-0.443618,0.223433,0.00113362,7.36627e-05,-0.0574436]]<br>
+                            K = [[516.928,0,367.129];[0,519.509,196.242];[0,0,1]]<br>
+                            R =
+                            [[0.324493,-0.0146827,0.945774];[-0.000837974,0.999875,0.0158101];[-0.945888,-0.00592281,0.32444]]<br>
+                            T = [[-0.959276,-121.773,-24.232]]</p>
+                        <p>&nbsp;</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>

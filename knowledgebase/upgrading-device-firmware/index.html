@@ -1,0 +1,58 @@
+---
+layout: default
+title: Upgrading Device Firmware
+---
+<div id="content" class="page col-full">
+
+
+    <section id="main" class="fullwidth">
+
+
+        <article class="post-654 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form role="search" method="get" id="kbsearchform" action="{{site.baseurl}}/knowledgebase/upgrading-device-firmware/">
+                    <div class="knowledgebase-search">
+                        <input type="text" value="" name="s" id="s"><span><input type="submit" id="searchsubmit" value="Search"></span><br>
+                        <input type="hidden" name="post_type" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2>Upgrading Device Firmware</h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2015-01-29T22:16:24+00:00" pubdate="">Last Updated: 6 years ago</time> in&nbsp;<a href="{{site.baseurl}}/kb/setup/">Setup</a>	            	        </p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <p>This article gives a brief walkthrough of how to upgrade firmware using the Indigo Tools software.&nbsp;Your camera will come with the latest firmware, and in general upgrading firmware is not necessary and may cause problems.&nbsp;Unless you&nbsp;know that you need to upgrade, you are likely better off staying where you are.</p>
+                        <p>If&nbsp;your camera is bricked (nonfunctional) after&nbsp;a failed upgrade process, please see&nbsp;the article <a title="Camera is bricked after failed firmware upgrade" href="#">here</a> about possible solutions.</p>
+                        <p>– Step 1:</p>
+                        <p><strong>Before you start the process, close the software and unplug the camera to bring everything&nbsp;to a known state.</strong></p>
+                        <p>Open Indigo Tools, and plug in the camera that you want to upgrade the firmware on.</p>
+                        <p>– Step 2:</p>
+                        <p>Open the firmware upgrade tool.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/uptut1.png"><img class="alignnone size-full wp-image-655" src="{{site.baseurl}}/assets/images/knowledgebase/uptut1.png" alt="uptut1" width="530" height="348" srcset="{{site.baseurl}}/assets/images/knowledgebase/uptut1.png 530w, {{site.baseurl}}/assets/images/knowledgebase/uptut1-256x168.png 256w, {{site.baseurl}}/assets/images/knowledgebase/uptut1-300x196.png 300w, {{site.baseurl}}/assets/images/knowledgebase/uptut1-250x164.png 250w, {{site.baseurl}}/assets/images/knowledgebase/uptut1-512x336.png 512w" sizes="(max-width: 530px) 100vw, 530px"></a></p>
+                        <p>– Step 3:</p>
+                        <p>Make sure the firmware version reads correctly for your camera. The “Current firmware” field should&nbsp;match the version of the firmware you have installed currently. If the value doesn’t match or something else&nbsp;doesn’t look right, stop and investigate further and possibly contact&nbsp;Occam support before proceeding to flash&nbsp;a new firmware.&nbsp;Flashing the wrong firmware can&nbsp;brick your camera&nbsp;at which point it will require&nbsp;servicing or be non-functional,&nbsp;so you want to proceed&nbsp;with caution.</p>
+                        <p>For paired multi-cameras such as Omni Stereo and multiple Array cameras linked together, the firmware version much match between all the devices. If a device in the paired group does not match or is not actually connected (i.e., the paired device is partially connected– see the paired devices tool for more information),&nbsp;some of the digits may be 255.</p>
+                        <p>In the normal case the&nbsp;screen will appear like:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/uptut2.png"><img class="alignnone size-full wp-image-656" src="{{site.baseurl}}/assets/images/knowledgebase/uptut2.png" alt="uptut2" width="464" height="156" srcset="{{site.baseurl}}/assets/images/knowledgebase/uptut2.png 464w, {{site.baseurl}}/assets/images/knowledgebase/uptut2-256x86.png 256w, {{site.baseurl}}/assets/images/knowledgebase/uptut2-300x100.png 300w, {{site.baseurl}}/assets/images/knowledgebase/uptut2-250x84.png 250w" sizes="(max-width: 464px) 100vw, 464px"></a></p>
+                        <p>If everything looks correct, click browse to select the firmware image you downloaded&nbsp;from the Occam web site.</p>
+                        <p>– Step 4:</p>
+                        <p>Make sure the model number of the&nbsp;device matches what you have. In the 1.x series of the&nbsp;software it is not prohibited to flash a&nbsp;camera with the firmware for another camera. This&nbsp;may&nbsp;brick your device, depending on the combination (in most cases the device will still be functional/upgradeable, but it will not return images or other data).</p>
+                        <p>For paired devices such as omnis5u3mt9v022 (aka Omni Stereo), the firmware image&nbsp;filename will have the&nbsp;constituent model number omni5u3mt9v022.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/uptut3.png"><img class="alignnone size-full wp-image-657" src="{{site.baseurl}}/assets/images/knowledgebase/uptut3.png" alt="uptut3" width="802" height="381" srcset="{{site.baseurl}}/assets/images/knowledgebase/uptut3.png 802w, {{site.baseurl}}/assets/images/knowledgebase/uptut3-256x121.png 256w, {{site.baseurl}}/assets/images/knowledgebase/uptut3-300x142.png 300w, {{site.baseurl}}/assets/images/knowledgebase/uptut3-250x118.png 250w, {{site.baseurl}}/assets/images/knowledgebase/uptut3-512x243.png 512w" sizes="(max-width: 802px) 100vw, 802px"></a></p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/uptut41.png"><img class="alignnone size-full wp-image-659" src="{{site.baseurl}}/assets/images/knowledgebase/uptut41.png" alt="uptut4" width="464" height="158" srcset="{{site.baseurl}}/assets/images/knowledgebase/uptut41.png 464w, {{site.baseurl}}/assets/images/knowledgebase/uptut41-256x87.png 256w, {{site.baseurl}}/assets/images/knowledgebase/uptut41-300x102.png 300w, {{site.baseurl}}/assets/images/knowledgebase/uptut41-250x85.png 250w" sizes="(max-width: 464px) 100vw, 464px"></a></p>
+                        <p>– Step 5:</p>
+                        <p>Once you&nbsp;are absolutely sure everything is&nbsp;correct, click the Upgrade button.&nbsp;During the upgrade process,&nbsp;a progress bar will appear showing the firmware upgrade progress. It is critically important that you don’t&nbsp;stop the program while this is happening as the result can be&nbsp;that your device will be&nbsp;nonfunctional afterwards and require servicing. So make sure your laptop is plugged in.</p>
+                        <p>The process should not take more than a couple of minutes. Once it completes, the device will reset and should re-enumerate in Indigo Tools.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/uptut5.png"><img class="alignnone size-full wp-image-660" src="{{site.baseurl}}/assets/images/knowledgebase/uptut5.png" alt="uptut5" width="537" height="160" srcset="{{site.baseurl}}/assets/images/knowledgebase/uptut5.png 537w, {{site.baseurl}}/assets/images/knowledgebase/uptut5-256x76.png 256w, {{site.baseurl}}/assets/images/knowledgebase/uptut5-300x89.png 300w, {{site.baseurl}}/assets/images/knowledgebase/uptut5-250x74.png 250w, {{site.baseurl}}/assets/images/knowledgebase/uptut5-512x152.png 512w" sizes="(max-width: 537px) 100vw, 537px"></a></p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>

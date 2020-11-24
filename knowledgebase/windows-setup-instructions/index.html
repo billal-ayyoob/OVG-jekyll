@@ -1,0 +1,59 @@
+---
+layout: default
+title: Setup
+---
+
+<div id="content" class="page col-full">
+
+    <section id="main" class="fullwidth">
+
+
+        <article class="post-164 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form role="search" method="get" id="kbsearchform" action="{{site.baseurl}}/knowledgebase/windows-setup-instructions/">
+                    <div class="knowledgebase-search">
+                        <input type="text" value="" name="s" id="s"><span><input type="submit" id="searchsubmit" value="Search"></span><br>
+                        <input type="hidden" name="post_type" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2>Windows Driver and Tools Setup Instructions</h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2017-04-24T16:14:23+00:00" pubdate="">Last Updated: 3 years ago</time> in&nbsp;<a href="{{site.baseurl}}/kb/setup/">Setup</a>	            	        </p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <p>This article gives a quick walkthrough of how to install the driver for the Occam Omni 60 camera, and how to install the Occam Indigo software on your PC.&nbsp;The instructions below are for Windows 8, but&nbsp;they’re virtually identical for Windows 7. Some of the screens&nbsp;will be slightly different.</p>
+                        <p>First things first, go&nbsp;download both the Windows Drivers and Indigo Tools and SDK from the <a title="Windows Drivers and Tools" href="http://occamvisiongroup.com/knowledgebase/windows-drivers-and-tools/">Windows Drivers and Tools Downloads page</a>.&nbsp;The&nbsp;current driver package is a zip file that you&nbsp;will need to uncompress. This can be done using the built-in Windows zip tools, by right clicking and selecting “Extract All” from the menu.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-17_1014.png"><img class="alignnone wp-image-258" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1014.png" alt="2014-08-17_1014" width="555" height="374" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1014.png 555w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1014-256x172.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1014-300x202.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1014-250x168.png 250w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1014-512x345.png 512w" sizes="(max-width: 555px) 100vw, 555px"></a></p>
+                        <p>Click “Extract” to put the files into a new subdirectory from where you downloaded them.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-17_1016-1.png"><img class="alignnone wp-image-259 size-full" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1016-1.png" alt="2014-08-17_1016 (1)" width="627" height="465" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1016-1.png 627w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1016-1-256x189.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1016-1-300x222.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1016-1-250x185.png 250w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1016-1-512x379.png 512w" sizes="(max-width: 627px) 100vw, 627px"></a></p>
+                        <p>Now plug in the camera into&nbsp;a USB3 port on your computer and open the Device Manager.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-25_1533.png"><img class="alignnone wp-image-448 size-full" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1533.png" alt="2014-08-25_1533" width="800" height="560" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1533.png 800w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1533-256x179.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1533-300x210.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1533-250x175.png 250w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1533-512x358.png 512w" sizes="(max-width: 800px) 100vw, 800px"></a></p>
+                        <p>You&nbsp;should see a&nbsp;device representing the Omni 60. It should appear as&nbsp;“Occam Robotics omni5u3mt9v022” or something similar.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-25_1531.png"><img class="alignnone wp-image-449 size-full" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1531.png" alt="2014-08-25_1531" width="795" height="579" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1531.png 795w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1531-256x186.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1531-300x218.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1531-250x182.png 250w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1531-512x372.png 512w" sizes="(max-width: 795px) 100vw, 795px"></a></p>
+                        <p>Right-click on the Omni camera device and select “Update Driver Software…”.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-25_1536.png"><img class="alignnone wp-image-450 size-full" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1536.png" alt="2014-08-25_1536" width="490" height="337" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1536.png 490w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1536-256x176.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1536-300x206.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1536-250x171.png 250w" sizes="(max-width: 490px) 100vw, 490px"></a></p>
+                        <p>That will show a wizard&nbsp;asking you&nbsp;where&nbsp;the system can&nbsp;find the driver files. Go ahead and choose&nbsp;“Browse my computer for driver software”&nbsp;and then select&nbsp;the directory where you unzipped the files.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-25_1537.png"><img class="alignnone wp-image-451 size-full" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1537.png" alt="2014-08-25_1537" width="626" height="465" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1537.png 626w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1537-256x190.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1537-300x222.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1537-250x185.png 250w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1537-512x380.png 512w" sizes="(max-width: 626px) 100vw, 626px"></a></p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014/08/2014-08-25_1539.png"><img class="alignnone wp-image-452 size-full" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1539.png" alt="2014-08-25_1539" width="334" height="385" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1539.png 334w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1539-222x256.png 222w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1539-260x300.png 260w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-25_1539-216x250.png 216w" sizes="(max-width: 334px) 100vw, 334px"></a></p>
+                        <p>Click next several times and&nbsp;the driver should now be installed.</p>
+                        <p>Now&nbsp;double-click on the installer for the Indigo Tools and SDK. That will launch the&nbsp;installation wizard:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-17_1022.png"><img class="alignnone size-full wp-image-260" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1022.png" alt="2014-08-17_1022" width="509" height="399" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1022.png 509w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1022-256x200.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1022-300x235.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1022-250x195.png 250w" sizes="(max-width: 509px) 100vw, 509px"></a></p>
+                        <p>Click next&nbsp;through all the screens to leave the installation directory&nbsp;and other options at their&nbsp;default.&nbsp;On the last screen of the wizard it will ask you whether you want&nbsp;to open the Indigo Tools software now. Leave&nbsp;that checked and click to&nbsp;close the wizard.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/2014-08-17_1024.png"><img class="alignnone size-full wp-image-261" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1024.png" alt="2014-08-17_1024" width="509" height="399" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1024.png 509w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1024-256x200.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1024-300x235.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/2014-08-17_1024-250x195.png 250w" sizes="(max-width: 509px) 100vw, 509px"></a></p>
+                        <p>The tools should open and show a screen with the camera video output.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omni60c-35c9c5c6c130b927.png"><img class="alignnone wp-image-207 size-large" src="http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927-1024x561.png" alt="omni60c-35c9c5c6c130b927" width="1024" height="561" srcset="http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927-1024x561.png 1024w, http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927-256x140.png 256w, http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927-300x164.png 300w, http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927-250x137.png 250w, http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927-512x280.png 512w, http://occamvisiongroup.com/wp-content/uploads/2014/08/omni60c-35c9c5c6c130b927.png 1600w" sizes="(max-width: 1024px) 100vw, 1024px"></a></p>
+                        <p>If you have any trouble&nbsp;getting the camera to work, please don’t hesitate to contact us at support@occamvisiongroup.com or through the <a title="Contact" href="http://occamvisiongroup.com/contact/">Contact page</a>.</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>

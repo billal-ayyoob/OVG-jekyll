@@ -1,0 +1,408 @@
+---
+layout: default
+title: Omni Stereo Controls
+---
+
+<div class="page col-full" id="content">
+
+
+    <section class="fullwidth" id="main">
+
+
+        <article class="post-765 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form action="{{site.baseurl}}/knowledgebase/omni-stereo-controls/" id="kbsearchform" method="get" role="search">
+                    <div class="knowledgebase-search">
+                        <input id="s" name="s" type="text" value=""><span><input id="searchsubmit" type="submit"
+                                                                                 value="Search"></span><br>
+                        <input name="post_type" type="hidden" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2><span id="Omni_Stereo_Controls">Omni Stereo Controls</span></h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2015-03-04T18:42:24+00:00" pubdate="">Last Updated: 5 years
+                                ago
+                            </time>
+                            in&nbsp;<a href="{{site.baseurl}}/kb/indigo-tools/">Indigo Tools</a>,&nbsp;<a
+                                href="{{site.baseurl}}/products/omni-stereo/">Omni Stereo</a>,&nbsp;<a
+                                href="{{site.baseurl}}/kb/sdk-development/">SDK development</a></p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <div class="no_bullets" id="toc_container"><p class="toc_title">Contents</p>
+                            <ul class="toc_list">
+                                <li><a href="#Omni_Stereo_Controls"><span class="toc_number toc_depth_1">1</span> Omni
+                                    Stereo Controls</a></li>
+                                <li><a href="#Sensor_Settings"><span class="toc_number toc_depth_1">2</span> Sensor
+                                    Settings</a>
+                                    <ul>
+                                        <li><a href="#Sensor_statistics"><span class="toc_number toc_depth_2">2.1</span>
+                                            Sensor statistics</a></li>
+                                        <li><a href="#Driver_statistics"><span class="toc_number toc_depth_2">2.2</span>
+                                            Driver statistics</a></li>
+                                        <li><a href="#Exposure"><span class="toc_number toc_depth_2">2.3</span> Exposure</a>
+                                        </li>
+                                        <li><a href="#Gain"><span class="toc_number toc_depth_2">2.4</span> Gain</a>
+                                        </li>
+                                        <li><a href="#Frame_Rate"><span class="toc_number toc_depth_2">2.5</span> Frame
+                                            Rate</a></li>
+                                        <li><a href="#ADV_Voltage_Reference"><span
+                                                class="toc_number toc_depth_2">2.6</span> ADV Voltage Reference</a></li>
+                                        <li><a href="#ADC_Companding"><span class="toc_number toc_depth_2">2.7</span>
+                                            ADC Companding</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#ImageProcessing_Controls"><span class="toc_number toc_depth_1">3</span>
+                                    Image&nbsp;Processing Controls</a>
+                                    <ul>
+                                        <li><a href="#Enabling_image_processing"><span class="toc_number toc_depth_2">3.1</span>
+                                            Enabling image processing</a></li>
+                                        <li><a href="#Brightness"><span class="toc_number toc_depth_2">3.2</span>
+                                            Brightness</a></li>
+                                        <li><a href="#Gamma"><span class="toc_number toc_depth_2">3.3</span> Gamma</a>
+                                        </li>
+                                        <li><a href="#Black_Level"><span class="toc_number toc_depth_2">3.4</span> Black
+                                            Level</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#Stereo_Controls"><span class="toc_number toc_depth_1">4</span> Stereo
+                                    Controls</a>
+                                    <ul>
+                                        <li><a href="#Rectifier"><span class="toc_number toc_depth_2">4.1</span>
+                                            Rectifier</a></li>
+                                        <li><a href="#Matcher"><span class="toc_number toc_depth_2">4.2</span>
+                                            Matcher</a></li>
+                                        <li><a href="#Scale"><span class="toc_number toc_depth_2">4.3</span> Scale</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#Blending_Controls"><span class="toc_number toc_depth_1">5</span> Blending
+                                    Controls</a>
+                                    <ul>
+                                        <li><a href="#Blender"><span class="toc_number toc_depth_2">5.1</span>
+                                            Blender</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#Advanced_Controls"><span class="toc_number toc_depth_1">6</span> Advanced
+                                    Controls</a>
+                                    <ul>
+                                        <li><a href="#Firmware_version"><span class="toc_number toc_depth_2">6.1</span>
+                                            Firmware version</a></li>
+                                        <li><a href="#Max_Deferred_Pending"><span
+                                                class="toc_number toc_depth_2">6.2</span> Max Deferred Pending</a></li>
+                                        <li><a href="#Max_Deferred_Reaping"><span
+                                                class="toc_number toc_depth_2">6.3</span> Max Deferred Reaping</a></li>
+                                        <li><a href="#Max_USB_Pending"><span class="toc_number toc_depth_2">6.4</span>
+                                            Max USB Pending</a></li>
+                                        <li><a href="#Saving_Settings"><span class="toc_number toc_depth_2">6.5</span>
+                                            Saving Settings</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <p></p>
+                        <p>When you plug in the Omni Stereo,&nbsp;the driver will either use default settings
+                            (hard-coded in the driver) or&nbsp;load the settings&nbsp;from the camera’s&nbsp;non-volatile
+                            storage, if available. To&nbsp;change any of&nbsp;the settings, click the control icon <a
+                                    href="{{site.baseurl}}/assets/images/knowledgebase/controlicon.png"><img
+                                    alt="controlicon"
+                                    class="alignnone size-full wp-image-767"
+                                    height="41" src="{{site.baseurl}}/assets/images/knowledgebase/controlicon.png" width="41"></a>in the Indigo Tools toolbar: <a
+                                    href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol1.png"><img
+                                    alt="omniscontrol1"
+                                    class="alignnone wp-image-766 size-full"
+                                    height="931" sizes="(max-width: 825px) 100vw, 825px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol1.png"
+                                    srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol1.png 825w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol1-226x256.png 226w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol1-265x300.png 265w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol1-221x250.png 221w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol1-453x512.png 453w"
+                                    width="825"></a> That will open the full set of&nbsp;configurable
+                            settings&nbsp;available in the&nbsp;Omni Stereo driver. The&nbsp;settings you can control
+                            from this menu&nbsp;are the same set&nbsp;you can configure&nbsp;from the SDK interface with
+                            the occamSetDeviceParam*() function calls.</p>
+                        <p>The full set of settings&nbsp;available depends on the driver&nbsp;as well as the set of
+                            plug-in modules loaded into the SDK.&nbsp;Modules&nbsp;that are attached to the device&nbsp;will
+                            expose settings of their own, and those will be accessible both from the Indigo Tools&nbsp;user
+                            interface as well as the SDK code interface. What follows is a&nbsp;walk-through of&nbsp;the
+                            settings available&nbsp;for the Omni Stereo device:</p>
+                        <h2></h2>
+                        <h2><span id="Sensor_Settings">Sensor Settings</span></h2>
+                        <h3><span id="Sensor_statistics">Sensor statistics</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol2.png"><img
+                                alt="omniscontrol2"
+                                class="alignnone size-medium wp-image-769"
+                                height="79" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol2-300x79.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol2-300x79.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol2-256x67.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol2-250x66.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol2.png 374w"
+                                width="300"></a></p>
+                        <p>This displays the number of the sensors in&nbsp;the&nbsp;device as well as their resolutions.&nbsp;For&nbsp;fixed&nbsp;rigs
+                            such as the Omni series,&nbsp;the number of&nbsp;sensors is 5, 10 or 15&nbsp;depending on
+                            the model. For&nbsp;virtual devices such as paired Array cameras, the number of&nbsp;sensors
+                            and their resolutions depends on how they were configured using the pairing tool.</p>
+                        <p>You can read these values using occamGetDeviceValuei(device,OCCAM_SENSOR_COUNT,&amp;value),&nbsp;occamGetDeviceValuei(device,OCCAM_SENSOR_WIDTH,&amp;value),
+                            and occamGetDeviceValuei(device,OCCAM_SENSOR_HEIGHT,&amp;value).</p>
+                        <h3><span id="Driver_statistics">Driver statistics</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol3.png"><img
+                                alt="omniscontrol3"
+                                class="alignnone size-medium wp-image-770"
+                                height="102" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol3-300x102.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol3-300x102.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol3-256x87.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol3-250x85.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol3.png 372w"
+                                width="300"></a></p>
+                        <p>BPS means bytes-per-second and indicates the total amount of data being read from&nbsp;the
+                            camera to the host, per second.&nbsp;This value will scale with the number of sensors&nbsp;in
+                            the camera, the resolution of the sensors,&nbsp;and the frame rate configured for them. If
+                            the camera is configured to run only in USB2 mode, or is bottlenecked in hardware for
+                            another reason, the value will be lower than it should. Ideally the value is&nbsp;simply the
+                            sum of width*height*fps for each sensor connected (plus a slight bit of negligible&nbsp;overhead).</p>
+                        <p>Wire FPS refers to the frame rate received off the wire from USB,&nbsp;<em>before</em> any
+                            host-side image processing that happens (such as color conversion, image processing, image
+                            rectification or undistortion, stereo computations, blending, etc).</p>
+                        <p>Emit FPS refers to the frame rate emited from the driver,&nbsp;<em>after</em> any host-side&nbsp;image
+                            processing.&nbsp;This value depends on what image processing is requested, in addition to
+                            the wire FPS. For example, if you request only&nbsp;OCCAM_RAW_IMAGE0, then no image
+                            processing will be performed at all, and only the raw image from sensor 0 will be returned.
+                            In this case the emit FPS should&nbsp;match the wire FPS.</p>
+                        <p>You can read these values with&nbsp;occamGetDeviceValuei(device,OCCAM_WIRE_FPS,&amp;value),&nbsp;occamGetDeviceValuei(device,OCCAM_WIRE_BPS,&amp;value),
+                            and&nbsp;occamGetDeviceValuei(device,OCCAM_EMIT_FPS,&amp;value).</p>
+                        <h3><span id="Exposure">Exposure</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol4.png"><img
+                                alt="omniscontrol4"
+                                class="alignnone size-medium wp-image-771"
+                                height="93" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol4-300x93.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol4-300x93.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol4-256x80.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol4-250x78.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol4.png 374w"
+                                width="300"></a></p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_EXPOSURE,VALUE) to change the exposure. The&nbsp;units&nbsp;depend
+                            on the sensor of the camera,&nbsp;and are generally&nbsp;in terms of sensor&nbsp;lines. You
+                            can use occamSetDeviceValuei(device,OCCAM_EXPOSURE_MICROSECONDS,VALUE) to set the exposure
+                            in terms of microseconds. The driver will&nbsp;perform the sensor-specific conversion for
+                            you.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_AUTO_EXPOSURE,VALUE) with VALUE = 1 or 0&nbsp;to enable
+                            or disable auto&nbsp;exposure.</p>
+                        <h3><span id="Gain">Gain</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol5.png"><img
+                                alt="omniscontrol5"
+                                class="alignnone size-medium wp-image-772"
+                                height="83" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol5-300x83.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol5-300x83.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol5-256x71.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol5-250x69.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol5.png 372w"
+                                width="300"></a></p>
+                        <p>The gain value control analog gain&nbsp;on the sensor, and the units depend on the&nbsp;specific&nbsp;sensor.
+                            You can set&nbsp;this value using setOccamDeviceValuei(device,OCCAM_GAIN,VALUE) to set the
+                            (analog) gain. The min and max can be queried by enumerating the parameters of the device.&nbsp;Use&nbsp;setOccamDeviceValuei(device,OCCAM_AUTO_GAIN,VALUE)
+                            for VALUE = 1 or 0 to enable or disable automatic gain control.</p>
+                        <h3><span id="Frame_Rate">Frame Rate</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol6.png"><img
+                                alt="omniscontrol6"
+                                class="alignnone size-medium wp-image-773"
+                                height="184" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol6-300x184.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol6-300x184.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol6-256x157.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol6-250x153.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol6.png 372w"
+                                width="300"></a></p>
+                        <p>The value controls the&nbsp;frame rate at which all the&nbsp;sensors will capture. The set of&nbsp;possible
+                            frame rates and video modes depends on the specific&nbsp;sensor and driver.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_TARGET_FPS,VALUE) to set the target frame rate of the
+                            sensors. The permissible values depend on the sensor and can be queried with&nbsp;occamGetDeviceValueiv.</p>
+                        <h3><span id="ADV_Voltage_Reference">ADV Voltage Reference</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol7.png"><img
+                                alt="omniscontrol7"
+                                class="alignnone size-medium wp-image-774"
+                                height="194" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol7-300x194.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol7-300x194.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol7-256x165.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol7-250x162.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol7.png 375w"
+                                width="300"></a></p>
+                        <p>This value controls the ADC reference voltage used when digitizing pixel values. The effect
+                            of&nbsp;this setting is similar to controlling analog gain.</p>
+                        <p>Use&nbsp;occamSetDeviceValuei(device,OCCAM_ADC_VREF,VALUE) to change this value.&nbsp;The&nbsp;possible
+                            values can be queried&nbsp;with&nbsp;occamGetDeviceValueiv.</p>
+                        <h3><span id="ADC_Companding">ADC Companding</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol8.png"><img
+                                alt="omniscontrol8"
+                                class="alignnone size-medium wp-image-775"
+                                height="130" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol8-300x130.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol8-300x130.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol8-256x111.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol8-250x108.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol8.png 373w"
+                                width="300"></a></p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_ADC_COMPANDING,VALUE) with VALUE = 1 or 0 to enable or
+                            disable ADC companding. ADC companding is a sensor feature&nbsp;available on the mt9v022
+                            sensors that allows compression of the 12-bit signal&nbsp;into 10-bits (which is then
+                            followed by firmware truncation to 8-bits). It has the effect&nbsp;similar to increasing
+                            analog&nbsp;gain.</p>
+                        <p>The compression from 12-bit to 10-bit follows&nbsp;the following model:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/adc_companding.png"><img
+                                alt="adc_companding"
+                                class="alignnone  wp-image-860"
+                                height="207" sizes="(max-width: 383px) 100vw, 383px" src="{{site.baseurl}}/assets/images/knowledgebase/adc_companding-300x162.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/adc_companding-300x162.png 300w, {{site.baseurl}}/assets/images/knowledgebase/adc_companding-256x138.png 256w, {{site.baseurl}}/assets/images/knowledgebase/adc_companding-250x135.png 250w, {{site.baseurl}}/assets/images/knowledgebase/adc_companding-512x277.png 512w, {{site.baseurl}}/assets/images/knowledgebase/adc_companding.png 646w"
+                                width="383"></a></p>
+                        <h2><span id="ImageProcessing_Controls">Image&nbsp;Processing Controls</span></h2>
+                        <h3><span id="Enabling_image_processing">Enabling image processing</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol1.png"><img
+                                alt="imgcontrol1"
+                                class="alignnone size-medium wp-image-810"
+                                height="55" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol1-300x55.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol1-300x55.png 300w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol1-256x47.png 256w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol1-250x46.png 250w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol1.png 371w"
+                                width="300"></a></p>
+                        <p>Image processing refers to brightness, gamma, black level, and white balance control.&nbsp;On
+                            the Omni&nbsp;series it is computed&nbsp;on the host-side&nbsp;using a&nbsp;lookup-table
+                            pixel mapping approach.&nbsp;When this option is enabled, the outputs&nbsp;IMAGE# are
+                            processed versions of their counterparts RAW_IMAGE#. When&nbsp;it is&nbsp;disabled, the
+                            RAW_IMAGE# images&nbsp;are identical to the IMAGE# images.&nbsp;The remainder of the&nbsp;vision
+                            pipeline is performed on the IMAGE# images.</p>
+                        <p>Use&nbsp;occamSetDeviceValuei(OCCAM_IMAGE_PROCESSING_ENABLED,VALUE) with VALUE = 1 or 0 to
+                            change this value.</p>
+                        <h3><span id="Brightness">Brightness</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol2.png"><img
+                                alt="imgcontrol2"
+                                class="alignnone size-medium wp-image-811"
+                                height="84" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol2-300x84.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol2-300x84.png 300w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol2-256x72.png 256w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol2-250x70.png 250w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol2.png 373w"
+                                width="300"></a></p>
+                        <p>This&nbsp;controls the fixed scale factor (digital gain) applied the&nbsp;entire image.&nbsp;The
+                            units are&nbsp;scale * 1000. Use occamSetDeviceValuei(device,OCCAM_BRIGHTNESS,VALUE) to
+                            change this value.</p>
+                        <h3><span id="Gamma">Gamma</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol3.png"><img
+                                alt="imgcontrol3"
+                                class="alignnone size-medium wp-image-812"
+                                height="86" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol3-300x86.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol3-300x86.png 300w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol3-256x73.png 256w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol3-250x72.png 250w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol3.png 371w"
+                                width="300"></a></p>
+                        <p>This&nbsp;controls the gamma function applied the&nbsp;entire image.&nbsp;The units are
+                            exponent&nbsp;* 1000. Use occamSetDeviceValuei(device,OCCAM_GAMMA,VALUE) to change this
+                            value.</p>
+                        <h3><span id="Black_Level">Black Level</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol4.png"><img
+                                alt="imgcontrol4"
+                                class="alignnone size-medium wp-image-813"
+                                height="64" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol4-300x64.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/imgcontrol4-300x64.png 300w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol4-256x55.png 256w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol4-250x53.png 250w, {{site.baseurl}}/assets/images/knowledgebase/imgcontrol4.png 372w"
+                                width="300"></a></p>
+                        <p>This controls the fixed bias subtracted&nbsp;from the image used to control black level.&nbsp;Use
+                            occamSetDeviceValuei(device,OCCAM_BLACK_LEVEL,VALUE) to change this value.</p>
+                        <h2><span id="Stereo_Controls">Stereo Controls</span></h2>
+                        <h3><span id="Rectifier">Rectifier</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol10.png"><img
+                                alt="omniscontrol10"
+                                class="alignnone size-medium wp-image-781"
+                                height="73" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol10-300x73.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol10-300x73.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol10-256x62.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol10-250x61.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol10.png 496w"
+                                width="300"></a></p>
+                        <p>This&nbsp;value controls the stereo rectification engine and is fixed in Omni Stereo to
+                            planar rectification.</p>
+                        <h3><span id="Matcher">Matcher</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol11.png"><img
+                                alt="omniscontrol11"
+                                class="alignnone size-medium wp-image-782"
+                                height="75" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol11-300x75.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol11-300x75.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol11-256x64.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol11-250x62.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol11.png 372w"
+                                width="300"></a></p>
+                        <p>This setting controls which host-side module is responsible for performing stereo matching
+                            between the 5&nbsp;stereo pairs in the camera. Use
+                            occamSetDeviceValues(device,OCCAM_STEREO_MATCHER0,VALUE) to&nbsp;change this value.&nbsp;The
+                            currently supported&nbsp;stereo matchers are:</p>
+                        <p><a href="http://occamvisiongroup.com/knowledgebase/block-matching-cpu-controls/"
+                              target="_blank"
+                              title="Block Matching (CPU) Controls">bmcpu – Block Matching (CPU).&nbsp;See the article here for&nbsp;configuration
+                            information.</a></p>
+                        <p>GPU-enabled&nbsp;stereo matchers will be available&nbsp;as of&nbsp;Indigo SDK 2.1.</p>
+                        <h3><span id="Scale">Scale</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol9.png"><img
+                                alt="omniscontrol9"
+                                class="alignnone size-medium wp-image-780"
+                                height="132" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol9-300x132.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omniscontrol9-300x132.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol9-256x112.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol9-250x110.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omniscontrol9.png 497w"
+                                width="300"></a></p>
+                        <p>Scale refers to the downsample factor applied to all the images as part of the&nbsp;rectification
+                            process.&nbsp;Increasing this value reduces the amount of work and can increase frame rate,
+                            but&nbsp;at the cost of reducing resolution.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_RECTIFY_SCALE,value) to change this value. You can
+                            query available values by using&nbsp;occamGetDeviceValueiv.</p>
+                        <h2><span id="Blending_Controls">Blending Controls</span></h2>
+                        <h3><span id="Blender">Blender</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/omnicontrol1.png"><img
+                                alt="omnicontrol1"
+                                class="alignnone size-medium wp-image-783"
+                                height="82" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/omnicontrol1-300x82.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/omnicontrol1-300x82.png 300w, {{site.baseurl}}/assets/images/knowledgebase/omnicontrol1-256x70.png 256w, {{site.baseurl}}/assets/images/knowledgebase/omnicontrol1-250x68.png 250w, {{site.baseurl}}/assets/images/knowledgebase/omnicontrol1.png 370w"
+                                width="300"></a></p>
+                        <p>This value controls which blender&nbsp;module is enabled.&nbsp;This module is used to
+                            generate the various&nbsp;stitched outputs such as OCCAM_STITCHED_IMAGE0,
+                            OCCAM_STITCHED_DISPARITY_IMAGE, and&nbsp;so on.&nbsp;Use
+                            occamSetDeviceValues(device,OCCAM_BLENDER0,VALUE) to change this value. The currently
+                            supported&nbsp;blender modules are:</p>
+                        <p><a href="http://occamvisiongroup.com/knowledgebase/cylindrical-blender-controls/"
+                              target="_blank"
+                              title="Cylindrical Blender Controls">cylb – Cylindrical Blender. See&nbsp;the article here for configuration
+                            information.</a></p>
+                        <h2><span id="Advanced_Controls">Advanced Controls</span></h2>
+                        <h3><span id="Firmware_version">Firmware version</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/devcontrol2.png"><img
+                                alt="devcontrol2"
+                                class="alignnone size-medium wp-image-805"
+                                height="73" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/devcontrol2-300x73.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/devcontrol2-300x73.png 300w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol2-256x62.png 256w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol2-250x61.png 250w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol2.png 374w"
+                                width="300"></a></p>
+                        <p>The firmware version is&nbsp;read from the camera&nbsp;and displayed here. It can be read
+                            using occamGetDeviceValuei(device,OCCAM_FIRMWARE_VERSION_A,&amp;value),&nbsp;occamGetDeviceValuei(device,OCCAM_FIRMWARE_VERSION_B,&amp;value),&nbsp;occamGetDeviceValuei(device,OCCAM_FIRMWARE_VERSION_C,&amp;value),
+                            and&nbsp;occamGetDeviceValuei(device,OCCAM_FIRMWARE_VERSION,&amp;value). The first three&nbsp;values
+                            read the A.B.C&nbsp;values separately, and the last value reads a single value where the
+                            three values are packed into the lower 3 octets.</p>
+                        <p>On&nbsp;paired devices representing multiple devices, the firmware of all sensors is
+                            generally required to be put to the same version.&nbsp;If for whatever reason this is not
+                            the case, one of the values will be 255.</p>
+                        <h3><span id="Max_Deferred_Pending">Max Deferred Pending</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/devcontrol3.png"><img
+                                alt="devcontrol3"
+                                class="alignnone size-medium wp-image-806"
+                                height="76" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/devcontrol3-300x76.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/devcontrol3-300x76.png 300w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol3-256x65.png 256w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol3-250x64.png 250w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol3.png 371w"
+                                width="300"></a></p>
+                        <p>This value indicates the number of frames that&nbsp;may be queued (but not in process) after
+                            reading&nbsp;from the wire, pending host-side&nbsp;processing. For minimal-lag operation,
+                            use 1. If the host is not fast enough to process all frames from the camera, frames will be
+                            dropped.&nbsp;When a new frame is read from the wire, the oldest frames in&nbsp;the queue
+                            are removed&nbsp;until the pending count&nbsp;(including the&nbsp;new frame) is less or
+                            equal&nbsp;to this value.</p>
+                        <p>Use occamGetDeviceValuei(device,OCCAM_MAX_DEFERRED_PENDING_FRAMES,&amp;value) to read this
+                            value.</p>
+                        <h3><span id="Max_Deferred_Reaping">Max Deferred Reaping</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/devcontrol4.png"><img
+                                alt="devcontrol4"
+                                class="alignnone size-medium wp-image-807"
+                                height="81" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/devcontrol4-300x81.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/devcontrol4-300x81.png 300w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol4-256x69.png 256w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol4-250x67.png 250w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol4.png 370w"
+                                width="300"></a></p>
+                        <p>This value indicates the number of frames that&nbsp;may be in-process after reading&nbsp;from
+                            the wire, pending host-side&nbsp;processing. For minimal-lag operation, use 1. The advantage
+                            of setting this value to a value greater than 1 is that depending on what host-side
+                            operation is configured,&nbsp;there&nbsp;may be greater overlap at the start/end of
+                            processing for a frame.</p>
+                        <p>Use occamGetDeviceValuei(device,OCCAM_MAX_DEFERRED_REAPING_FRAMES,&amp;value) to read this
+                            value.</p>
+                        <h3><span id="Max_USB_Pending">Max USB Pending</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/devcontrol5.png"><img
+                                alt="devcontrol5"
+                                class="alignnone size-medium wp-image-808"
+                                height="82" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/devcontrol5-300x82.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/devcontrol5-300x82.png 300w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol5-256x70.png 256w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol5-250x68.png 250w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol5.png 371w"
+                                width="300"></a></p>
+                        <p>The value indicates the number of frames kept in the intermittent queue of USB read frames.
+                            It&nbsp;is&nbsp;redundant with the above two settings and will be removed in Indigo SDK
+                            2.1.</p>
+                        <p>Use occamGetDeviceValuei(device,OCCAM_MAX_USB_PENDING_FRAMES,&amp;value) to read this
+                            value.</p>
+                        <h3><span id="Saving_Settings">Saving Settings</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/devcontrol1.png"><img
+                                alt="devcontrol1"
+                                class="alignnone size-medium wp-image-804"
+                                height="164" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/devcontrol1-300x164.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/devcontrol1-300x164.png 300w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol1-256x140.png 256w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol1-250x136.png 250w, {{site.baseurl}}/assets/images/knowledgebase/devcontrol1.png 373w"
+                                width="300"></a></p>
+                        <p>Once you have configured the camera as you wish, you may&nbsp;click Save as&nbsp;indicated
+                            above to write all settings to non-volatile EEPROM-memory on the device. On&nbsp;camera and
+                            application startup, the&nbsp;driver will automatically read&nbsp;the last-saved
+                            settings.</p>
+                        <p>&nbsp;</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>

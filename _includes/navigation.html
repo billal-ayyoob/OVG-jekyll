@@ -1,0 +1,19 @@
+<nav class="col-full" id="navigation" role="navigation">
+	<ul class="nav fr" id="main-nav">
+		{% for link in site.data.navigation %}
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-835"><a href="{{site.baseurl}}{{link.url}}">{{link.title}}</a>
+				{% if link.sublinks %}			
+				<ul class="sub-menu">			
+					{% for sublink in link.sublinks %}
+                        			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-869">
+							<a href="{{site.baseurl}}{{sublink.url}}">{{ sublink.title }}</a>
+                                		</li>	
+                 			{% endfor %}
+				</ul>
+				{% endif %}
+			</li>
+		{% endfor %}
+		
+	</ul>
+</nav>
+

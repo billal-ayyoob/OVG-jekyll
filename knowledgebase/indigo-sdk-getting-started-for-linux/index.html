@@ -1,0 +1,254 @@
+---
+layout: default
+title: Indigo SDK Getting Started For Linux
+---
+
+<div class="page col-full" id="content">
+
+    <section class="fullwidth" id="main">
+
+        <article class="post-928 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form action="{{site.baseurl}}/knowledgebase/indigo-sdk-getting-started-for-linux/" id="kbsearchform" method="get" role="search">
+                    <div class="knowledgebase-search">
+                        <input id="s" name="s" type="text" value=""><span><input id="searchsubmit" type="submit"
+                                                                                 value="Search"></span><br>
+                        <input name="post_type" type="hidden" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2><span id="Indigo_SDK_Getting_Started_For_Linux">Indigo SDK Getting Started For Linux</span></h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2019-01-25T00:27:51+00:00" pubdate="">Last Updated: 2 years
+                                ago
+                            </time>
+                            in&nbsp;<a href="{{site.baseurl}}/products/omni-60/">Omni 60</a>,&nbsp;<a
+                                href="{{site.baseurl}}/products/omni-stereo/">Omni Stereo</a>,&nbsp;<a
+                                href="{{site.baseurl}}/kb/sdk-development/">SDK development</a>,&nbsp;<a
+                                href="{{site.baseurl}}/kb/setup/">Setup</a></p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <div class="no_bullets" id="toc_container"><p class="toc_title">Contents</p>
+                            <ul class="toc_list">
+                                <li><a href="#Indigo_SDK_Getting_Started_For_Linux"><span
+                                        class="toc_number toc_depth_1">1</span> Indigo SDK Getting Started For Linux</a>
+                                </li>
+                                <li><a href="#System_requirements"><span class="toc_number toc_depth_1">2</span> System
+                                    requirements</a></li>
+                                <li><a href="#Getting_the_SDK"><span class="toc_number toc_depth_1">3</span> Getting the
+                                    SDK</a></li>
+                                <li><a href="#Minimal_Dependencies"><span class="toc_number toc_depth_1">4</span>
+                                    Minimal Dependencies</a></li>
+                                <li><a href="#OpenGL_dependencies"><span class="toc_number toc_depth_1">5</span> OpenGL
+                                    dependencies</a></li>
+                                <li><a href="#OpenCV_dependencies"><span class="toc_number toc_depth_1">6</span> OpenCV
+                                    dependencies</a></li>
+                                <li><a href="#Building_the_SDK"><span class="toc_number toc_depth_1">7</span> Building
+                                    the SDK</a></li>
+                                <li><a href="#Updating_udev_to_allow_non-root_access_to_devices"><span
+                                        class="toc_number toc_depth_1">8</span> Updating udev to allow non-root access
+                                    to devices</a></li>
+                                <li><a href="#Reading_and_displaying_output_from_the_camera"><span
+                                        class="toc_number toc_depth_1">9</span> Reading and displaying output from the
+                                    camera</a></li>
+                                <li><a href="#libusb_issues_on_Ubuntu_1204"><span
+                                        class="toc_number toc_depth_1">10</span> libusb issues on Ubuntu 12.04</a></li>
+                            </ul>
+                        </div>
+                        <p></p>
+                        <p>This article gives a short walkthrough of how to configure the Indigo SDK for Linux and get
+                            an Occam Omni camera up and running.</p>
+                        <h2><span id="System_requirements">System requirements</span></h2>
+                        <p>The SDK supports Ubuntu 12.04 and above, and the specific commands and packages listed below
+                            correspond to these two versions. Generally speaking however, the SDK will run on any Linux
+                            distribution that has an up to date Linux kernel (anything newer than 3.4 should work), but
+                            you may have to make some adjustments to the code depending on the version of gcc or other
+                            differences between Ubuntu and your environment.</p>
+                        <p>Here are two known-working kernels:<br>
+                            <code><br>
+                                14.04.2: Linux occam-14-04 3.13.0-49-generic #83-Ubuntu SMP Fri Apr 10 20:11:33 UTC 2015
+                                x86_64 x86_64 x86_64 GNU/Linux</code></p>
+                        <p>12.04.5: Linux occam-12-04 3.13.0-49-generic #81~precise1-Ubuntu SMP Wed Mar 25 16:32:15 UTC
+                            2015 x86_64 x86_64 x86_64 GNU/Linux</p>
+                        <p>Use lspci -vv to see what USB3 controllers you have, and their kernel drivers. The built-in
+                            xhci_hcd driver has been stable since around kernel 3.4, and most USB3 controllers will work
+                            reliably with it and the Occam cameras.</p>
+                        <p>Note that for Omni Stereo and Array multi-camera configurations, synchronization between
+                            cameras is achieved using USB3 ITP packets. This requires that all the cameras are plugged
+                            into the same USB3 controller.</p>
+                        <p>Also note that total bandwidth available inbound from the USB3 controller must exceed the
+                            bandwidth required by the camera configuration. For Omni Stereo configurations, this
+                            requires that at least 2 PCIe lanes are available, since total camera bandwidth is about 210
+                            MB/s where 1 PCIe lane only provides around 150 MB/s. You can use lspci to determine the
+                            number of lanes available to your USB3 controller. Most motherboard build-in controllers
+                            have 4 or more lanes, but it all depends on your particular hardware.</p>
+                        <p>Here is example lspci output that shows a number of known-working controllers.<br>
+                            <code><br>
+                                03:00.0 USB controller: Renesas Technology Corp. uPD720201 USB 3.0 Host<br>
+                                Controller (rev 03) (prog-if 30 [XHCI])<br>
+                                Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop-<br>
+                                ParErr- Stepping- SERR+ FastB2B- DisINTx+<br>
+                                Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort-<br>
+                                SERR- Latency: 0, Cache Line Size: 64 bytes<br>
+                                Interrupt: pin A routed to IRQ 16<br>
+                                Region 0: Memory at fe900000 (64-bit, non-prefetchable)<br>
+                                [size=8K]<br>
+                                Capabilities:<br>
+                                Kernel driver in use: xhci_hcd</code></p>
+                        <p>00:10.0 USB controller: Advanced Micro Devices, Inc. [AMD] FCH USB XHCI<br>
+                            Controller (rev 09) (prog-if 30 [XHCI])<br>
+                            Subsystem: Hewlett-Packard Company Device 2b17<br>
+                            Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop-<br>
+                            ParErr- Stepping- SERR+ FastB2B- DisINTx+<br>
+                            Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort-<br>
+                            SERR- Latency: 0, Cache Line Size: 64 bytes<br>
+                            Interrupt: pin A routed to IRQ 18<br>
+                            Region 0: Memory at feb6a000 (64-bit, non-prefetchable)<br>
+                            [size=8K]<br>
+                            Capabilities:<br>
+                            Kernel driver in use: xhci_hcd</p>
+                        <p>00:10.1 USB controller: Advanced Micro Devices, Inc. [AMD] FCH USB XHCI<br>
+                            Controller (rev 09) (prog-if 30 [XHCI])<br>
+                            Subsystem: Hewlett-Packard Company Device 2b17<br>
+                            Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop-<br>
+                            ParErr- Stepping- SERR+ FastB2B- DisINTx+<br>
+                            Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort-<br>
+                            SERR- Latency: 0, Cache Line Size: 64 bytes<br>
+                            Interrupt: pin B routed to IRQ 17<br>
+                            Region 0: Memory at feb68000 (64-bit, non-prefetchable)<br>
+                            [size=8K]<br>
+                            Capabilities:<br>
+                            Kernel driver in use: xhci_hcd</p>
+                        <h2><span id="Getting_the_SDK">Getting the SDK</span></h2>
+                        <p>The SDK downloads area contains the SDK tarball, <a href="http://occamvisiongroup.com/knowledgebase/software-development-kits/"
+                                                                               rel="noopener noreferrer"
+                                                                               target="_blank"
+                                                                               title="Software Development Kits">here</a>. Go
+                            download it and unpack it.<br>
+                            <code><br>
+                                cd<br>
+                                tar xzvf indigosdk-2.0.9.tar.gz<br>
+                            </code></p>
+                        <h2><span id="Minimal_Dependencies">Minimal Dependencies</span></h2>
+                        <p>The minimal dependencies required to build the SDK are cmake, gcc, and libusb.<br>
+                            <code><br>
+                                sudo apt-get install build-essential git cmake libusb-1.0-0-dev<br>
+                            </code></p>
+                        <h2><span id="OpenGL_dependencies">OpenGL dependencies</span></h2>
+                        <p>OpenGL is an optional dependency that allows some acceleration of stitching and rendering
+                            operations.</p>
+                        <p>libxxf86vm-dev and other GL libraries are required for GL support, but it depends on your
+                            graphics card. Use mesa libraries for generic, though that likely won’t be faster than the
+                            default non-OpenGL implementations provided in the SDK.</p>
+                        <h2><span id="OpenCV_dependencies">OpenCV dependencies</span></h2>
+                        <p>OpenCV is an optional dependency that is used by some of the examples in the SDK. The core of
+                            the SDK itself does not require OpenCV, but can be easily integrated with it (as
+                            demonstrated in several of the examples) and the camera calibration data provided by the
+                            cameras is in the same format as used in OpenCV.<br>
+                            <code><br>
+                                cd<br>
+                                git clone https://github.com/Itseez/opencv.git<br>
+                            </code><br>
+                            To get graphics working from the read_images_opencv example:<br>
+                            <code><br>
+                                sudo apt-get install libgtk2.0-dev pkg-config<br>
+                            </code><br>
+                            Then build opencv, for example with:<br>
+                            <code><br>
+                                cd opencv<br>
+                                mkdir build<br>
+                                cd build<br>
+                                cmake ..<br>
+                                make -j 10 -k<br>
+                                cd ../..<br>
+                            </code></p>
+                        <h2><span id="Building_the_SDK">Building the SDK</span></h2>
+                        <p>Build the SDK is relatively simple, simply run cmake to generate GNU makefiles and then run
+                            make. The build products, including the indigo shared library as well as all the example
+                            programs will appears in the bin subdirectory.</p>
+                        <p>You can optionally enable OpenCV integration (which will cause building of the relevant
+                            examples showing OpenCV integration), as well OpenGL integration.<br>
+                            <code><br>
+                                cmake -DUSE_OPENCV=1 -DUSE_OPENGL=0 -DOpenCV_DIR=`pwd`/../opencv/build<br>
+                                make -j 10 -k<br>
+                            </code></p>
+                        <h2><span id="Updating_udev_to_allow_non-root_access_to_devices">Updating udev to allow non-root access to devices</span>
+                        </h2>
+                        <p>By default, USB devices appear as device files that are only accessible by root on the
+                            system. You need to alter udev to have it change permissions when a device is plugged in.
+                            You can also do this manually if needed.</p>
+                        <p>A separate article discusses this briefly, <a
+                                href="http://occamvisiongroup.com/knowledgebase/linux-camera-appears-in-lsusb-but-sdk-demo-programs-dont-detect-it/"
+                                title="Linux: camera appears in lsusb but SDK demo programs don’t detect it">here</a>.<code><br>
+                        </code></p>
+                        <p>Basically you must create a file:<br>
+                            <code><br>
+                                /etc/udev/rules.d/occam.rules<br>
+                            </code></p>
+                        <p>And add this line to it:<br>
+                            <code><br>
+                                SUBSYSTEM=="usb", ATTRS{idVendor}=="285e", ATTRS{idProduct}=="3efd", MODE="0666"<br>
+                            </code></p>
+                        <p>Then restart udev:<br>
+                            <code><br>
+                                sudo service udev restart<br>
+                            </code></p>
+                        <p>Then unplug and re-plug the camera, and it should appear with permissions 666, allowing any
+                            user on the system to talk to the camera with libusb.</p>
+                        <h2><span id="Reading_and_displaying_output_from_the_camera">Reading and displaying output from the camera</span>
+                        </h2>
+                        <p>The easiest way to read data from the camera and verify that things are working as expected
+                            is to run the read_images_opencv example from the SDK bin directory.<br>
+                            <code><br>
+                                bin/read_images_opencv<br>
+                            </code><br>
+                            This will display a highgui window showing camera output. Note that the SDK interface allows
+                            for the driver to provide varied outputs. You can cycle through them with the 1 and 2 keys
+                            in the example. Any host-side computation is only performed if is required by the requested
+                            data. I.e., if you request disparity image for the first stereo pair only, then stereo
+                            matching will not be performed for the other stereo pairs, etc.</p>
+                        <p>If you have access to a Windows machine, you are also encouraged to use the Windows Indigo
+                            Tools UI application to display output from the camera. The application has all the possible
+                            device configuration options mapped to UI, so you can easily get an idea of what control is
+                            possible.</p>
+                        <h2><span id="libusb_issues_on_Ubuntu_1204">libusb issues on Ubuntu 12.04</span></h2>
+                        <p>On a fully dist-upgrade’ed Ubuntu 12.04, the version of libusb included is too old (1.0.9)
+                            and has problems reading USB3 streams at full speed. This problem will manifest itself as
+                            the frame rate of the device not exceeding USB2 data rates (which for Omni Stereo is about
+                            12 fps, instead of the full 60 fps).</p>
+                        <p>You can use the indigosdk-x.y.z/bin/read_images_fps example to determine the frame rate you
+                            are able to read from the device. Also of possible interest, you can uncomment the<br>
+                            <code><br>
+                                #define DEBUG_DATA_RATES<br>
+                            </code></p>
+                        <p>at the top of src/omni_libusb.cc. This will cause the SDK to emit a line to stderr once per
+                            second indicating the fps and MB/s read raw from the USB pipes. If everything is working
+                            properly with your hardware, you will see about 104 MB/s for Omni 60, and about 210 MB/s for
+                            Omni Stereo.</p>
+                        <p>To update libusb, you will need to manually build it, for example with something like:<br>
+                            <code><br>
+                                tar xjvf ~/Downloads/libusb-1.0.19.tar.bz2<br>
+                                cd libusb-1.0.19<br>
+                                sudo apt-get install libudev-dev<br>
+                                ./configure --prefix=`pwd`/inst<br>
+                                make<br>
+                                make install<br>
+                                export PKG_CONFIG_PATH=`pwd`/inst/lib/pkgconfig</code></p>
+                        <p>cd indigosdk-2.0.8<br>
+                            rm -f CMakeCache.txt &amp;&amp; cmake -DOpenCV_DIR=~/opencv/build -DUSE_OPENCV=1
+                            -DUSE_OPENGL=0 .<br>
+                            make<br>
+                            bin/read_images_fps</p>
+                        <p>Verify that 1.0.19 libusb is used by using make VERBOSE=1 when building the SDK. E.g., the -L
+                            path for libusb should point to the manually built one.</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>

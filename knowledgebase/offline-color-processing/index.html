@@ -1,0 +1,144 @@
+---
+layout: default
+title: Offline color processing
+---
+
+<div class="page col-full" id="content">
+
+
+    <section class="fullwidth" id="main">
+
+
+        <article class="post-836 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form action="{{site.baseurl}}/knowledgebase/offline-color-processing/" id="kbsearchform" method="get" role="search">
+                    <div class="knowledgebase-search">
+                        <input id="s" name="s" type="text" value=""><span><input id="searchsubmit" type="submit"
+                                                                                 value="Search"></span><br>
+                        <input name="post_type" type="hidden" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2><span id="Offline_color_processing">Offline color processing</span></h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2015-03-03T05:09:01+00:00" pubdate="">Last Updated: 5 years
+                                ago
+                            </time>
+                            in&nbsp;<a href="{{site.baseurl}}/kb/indigo-tools/">Indigo Tools</a></p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <div class="no_bullets" id="toc_container"><p class="toc_title">Contents</p>
+                            <ul class="toc_list">
+                                <li><a href="#Offline_color_processing"><span class="toc_number toc_depth_1">1</span>
+                                    Offline color processing</a></li>
+                                <li><a href="#Disadvantages_of_immediate_color_conversion"><span
+                                        class="toc_number toc_depth_1">2</span> Disadvantages of immediate color
+                                    conversion</a>
+                                    <ul>
+                                        <li><a href="#CPUConsumption"><span class="toc_number toc_depth_2">2.1</span>
+                                            CPU&nbsp;Consumption</a></li>
+                                        <li><a href="#USB3_and_memory_bandwidth"><span class="toc_number toc_depth_2">2.2</span>
+                                            USB3 and memory bandwidth</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#Color_processingin_post"><span class="toc_number toc_depth_1">3</span>
+                                    Color processing&nbsp;in post</a></li>
+                            </ul>
+                        </div>
+                        <p></p>
+                        <p>Occam color sensors use what is known as “bayer pattern” to capture color data. The pixels on
+                            the sensor are covered with a repeating 2×2 filter block of the following form:</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/bayerpost2.png"><img
+                                alt="bayerpost2"
+                                class="alignnone size-full wp-image-838"
+                                height="107" src="{{site.baseurl}}/assets/images/knowledgebase/bayerpost2.png" width="134"></a></p>
+                        <p>The images from the sensor are&nbsp;actually just&nbsp;grayscale single channel images,&nbsp;such
+                            as</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/bayerpost4.png"><img
+                                alt="bayerpost4"
+                                class="alignnone size-medium wp-image-840"
+                                height="130" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/bayerpost4-300x130.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/bayerpost4-300x130.png 300w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost4-256x111.png 256w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost4-250x108.png 250w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost4.png 482w"
+                                width="300"></a></p>
+                        <p>However&nbsp;as you can see, zooming into the dot on the i, the pixels are scaled differently
+                            depending on the&nbsp;color of&nbsp;the light hitting each pixel, as well as the position of
+                            the pixel with respect to the 2×2 bayer block.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/bayerpost4.png"><img
+                                alt="bayerpost5"
+                                class="alignnone size-medium wp-image-841"
+                                height="264" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/bayerpost5-300x264.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/bayerpost5-300x264.png 300w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost5-256x225.png 256w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost5-250x220.png 250w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost5-512x450.png 512w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost5.png 575w"
+                                width="300"></a></p>
+                        <p>The process to convert this raw bayer image&nbsp;to the usual RGB is known as debayering or
+                            demosaicing.&nbsp;Taking each 2×2 block,&nbsp;through some interpolation we&nbsp;can
+                            generate the expected RGB image.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/bayerpost4.png"><img
+                                alt="bayerpost3"
+                                class="alignnone size-medium wp-image-839"
+                                height="142" sizes="(max-width: 300px) 100vw, 300px" src="{{site.baseurl}}/assets/images/knowledgebase/bayerpost3-300x142.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/bayerpost3-300x142.png 300w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost3-256x121.png 256w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost3-250x118.png 250w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost3.png 492w"
+                                width="300"></a></p>
+                        <h2><span id="Disadvantages_of_immediate_color_conversion">Disadvantages of immediate color conversion</span>
+                        </h2>
+                        <p>However,&nbsp;when we are&nbsp;concerned with high frame rate capture, there are two&nbsp;problems
+                            with this:</p>
+                        <h3><span id="CPUConsumption">CPU&nbsp;Consumption</span></h3>
+                        <p>The debayering process is&nbsp;slow, and requires considerable CPU processing time. On the
+                            Array series of cameras, the conversion can be optionally done in&nbsp;FPGA on the camera
+                            which alleviates this problem. On the&nbsp;Omni series, the&nbsp;debayer process must happen
+                            on the host due to&nbsp;camera&nbsp;hardware limitations.&nbsp;Depending on the host
+                            platform and how fast you want to run the camera,&nbsp;performing the processing on host can
+                            prevent you from capturing at full FPS.</p>
+                        <h3><span id="USB3_and_memory_bandwidth">USB3 and memory bandwidth</span></h3>
+                        <p>When you convert&nbsp;to RGB, you are tripling the amount of data that must be sent from the
+                            camera, or stored in memory, or written to disk (when recording). This can be substantial.
+                            On the bu3ar0330 Array camera, full rate capture&nbsp;runs at&nbsp;around 170 MB/s. On the
+                            Omni 60 and Stereo it’s 104 and 208 MB/s, respectively. 170*3=510 MB/s is over the&nbsp;actual
+                            USB3 bandwidth that is available on most systems. Also, even when this value is under the
+                            USB3 bandwidth limit,&nbsp;many computers will&nbsp;struggle with&nbsp;handling 500 – 600
+                            MB/s, due to&nbsp;various bottlenecks&nbsp;on the system.</p>
+                        <p>In the Indigo SDK we try to reduce the number of&nbsp;copies of data to a minimum,&nbsp;however
+                            even 2 or 3 copies will yield into gigabytes of data per second which can cause problems on
+                            many lower end systems.</p>
+                        <p>Exactly 1 copy of the data is required to de-packetize data from the USB stack, which is the
+                            number of copies that result when selecting the RAW_IMAGE# outputs. Also, it is worth noting
+                            that on the Array cameras YUV422 and&nbsp;YUV420&nbsp;formats are available, that decimate
+                            the chroma data and make the above transfer problems slightly less unfortunate.</p>
+                        <h2><span id="Color_processingin_post">Color processing&nbsp;in post</span></h2>
+                        <p>For&nbsp;this reason&nbsp;Indigo Tools and the SDK provide a way to record data without any
+                            post-processing, and to do this work ‘offline”. Offline in this case means during live&nbsp;streaming/display
+                            of the video feed, when&nbsp;playing back a video&nbsp;recorded with Indigo Tools, or via
+                            the SDK through the modules API. That is,&nbsp;the system handles only raw bayer images
+                            basically everywhere, and only when it needs to&nbsp;<em>display</em> the images&nbsp;does
+                            it convert them to RGB and do other&nbsp;work.</p>
+                        <p>Moreover,&nbsp;the&nbsp;debayer and other work is done in GPU in Indigo Tools, which can
+                            handle the work very&nbsp;efficiently even on lower end systems. On low-end systems, the
+                            display path is heavily optimized. However, downloading back to CPU&nbsp;is not.</p>
+                        <p>In Indigo Tools,&nbsp;to enable this first select&nbsp;an appropriate RAW_IMAGE# output, and
+                            then use the&nbsp;debayer memory indicated in the picture below to view the&nbsp;bayer post
+                            processing settings.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/bayerpost1.png"><img
+                                alt="bayerpost1"
+                                class="alignnone wp-image-837 size-full"
+                                height="400" sizes="(max-width: 574px) 100vw, 574px" src="{{site.baseurl}}/assets/images/knowledgebase/bayerpost1.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/bayerpost1.png 574w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost1-256x178.png 256w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost1-300x209.png 300w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost1-250x174.png 250w, {{site.baseurl}}/assets/images/knowledgebase/bayerpost1-512x356.png 512w"
+                                width="574"></a></p>
+                        <p>&nbsp;</p>
+                        <p>Clicking “Raw output” will display the images as raw bayer form, and otherwise they will be
+                            processed to RGB.</p>
+                        <p>The meaning of the other&nbsp;parameters is&nbsp;the same as the main image processing
+                            controls pop-up.</p>
+                        <p></p></div>
+                </article>
+            </section><!-- /.entry -->
+
+
+        </article><!-- /.post -->
+
+
+    </section><!-- /#main -->
+
+
+</div>

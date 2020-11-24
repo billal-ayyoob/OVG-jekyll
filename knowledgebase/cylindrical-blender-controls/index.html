@@ -1,0 +1,136 @@
+---
+layout: default
+title: Cylindrical Blender Controls
+---
+
+<div class="page col-full" id="content">
+
+    <section class="fullwidth" id="main">
+
+        <article class="post-798 page type-page status-publish hentry">
+
+            <section class="entry">
+                <form action="{{site.baseurl}}/knowledgebase/cylindrical-blender-controls/" id="kbsearchform" method="get" role="search">
+                    <div class="knowledgebase-search">
+                        <input id="s" name="s" type="text" value=""><span><input id="searchsubmit" type="submit"
+                                                                                 value="Search"></span><br>
+                        <input name="post_type" type="hidden" value="knowledgebase">
+                    </div>
+                    <p></p></form>
+                <article class="knowledgebase-single">
+                    <h2><span id="Cylindrical_Blender_Controls">Cylindrical Blender Controls</span></h2>
+                    <div class="knowledgebase-meta">
+                        <p>
+                            <time class="updated" datetime="2015-03-03T06:13:18+00:00" pubdate="">Last Updated: 5 years
+                                ago
+                            </time>
+                            in&nbsp;<a href="{{site.baseurl}}/kb/indigo-tools/">Indigo Tools</a>,&nbsp;<a
+                                href="{{site.baseurl}}/kb/sdk-development/">SDK development</a></p>
+                        <p></p></div>
+                    <div class="knowledgebase-content">
+                        <div class="no_bullets" id="toc_container"><p class="toc_title">Contents</p>
+                            <ul class="toc_list">
+                                <li><a href="#Cylindrical_Blender_Controls"><span
+                                        class="toc_number toc_depth_1">1</span> Cylindrical Blender Controls</a>
+                                    <ul>
+                                        <li><a href="#Radius"><span class="toc_number toc_depth_2">1.1</span> Radius</a>
+                                        </li>
+                                        <li><a href="#Theta"><span class="toc_number toc_depth_2">1.2</span> Theta</a>
+                                        </li>
+                                        <li><a href="#Scale"><span class="toc_number toc_depth_2">1.3</span> Scale</a>
+                                        </li>
+                                        <li><a href="#Crop"><span class="toc_number toc_depth_2">1.4</span> Crop</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <p></p>
+                        <p>Below we review&nbsp;the options&nbsp;available for the Cylindrical blender module,&nbsp;which
+                            forms a single image from&nbsp;all the&nbsp;sensors in the camera. The image is formed by
+                            projecting each of the sensor images&nbsp;onto a cylinder&nbsp;centered on the Y-axis, and&nbsp;quantizing
+                            to a fixed&nbsp;grid to form a 2D image of the unwrapped cylinder. This of course requires
+                            full calibration data for the&nbsp;sensors, so we&nbsp;know where they are relative to the
+                            cylinder.</p>
+                        <p>When&nbsp;the camera is plugged in, you can click&nbsp;<a
+                                href="{{site.baseurl}}/assets/images/knowledgebase/controlicon.png"><img
+                                alt="controlicon"
+                                class="alignnone size-full wp-image-767"
+                                height="41" src="{{site.baseurl}}/assets/images/knowledgebase/controlicon.png"
+                                width="41"></a>&nbsp;to open the camera configuration.&nbsp;The&nbsp;Blending
+                            section will show the cylindrical blender options when “Cylindrical” is selected as the
+                            Blender.</p>
+                        <p>You can use&nbsp;use occamSetDeviceValues(device,OCCAM_BLENDER0,”cylb”) to&nbsp;programmatically
+                            enable cylindrical stitching if it is not already set.&nbsp;The actual output image will be
+                            produced when reading&nbsp;OCCAM_STITCHED_IMAGE0,&nbsp;OCCAM_STITCHED_IMAGE1,
+                            OCCAM_STITCHED_DISPARITY_IMAGE, etc.&nbsp;The set of outputs exposed that use the blender
+                            depends on the&nbsp;camera/driver.</p>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols1.png"><img
+                                alt="cylbcontrols1"
+                                class="alignnone size-medium wp-image-799"
+                                height="163" sizes="(max-width: 300px) 100vw, 300px"
+                                src="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols1-300x163.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols1-300x163.png 300w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols1-256x139.png 256w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols1-250x136.png 250w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols1.png 368w"
+                                width="300"></a></p>
+                        <h3><span id="Radius">Radius</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols2.png"><img
+                                alt="cylbcontrols2"
+                                class="alignnone size-medium wp-image-800"
+                                height="87" sizes="(max-width: 300px) 100vw, 300px"
+                                src="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols2-300x87.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols2-300x87.png 300w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols2-256x74.png 256w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols2-250x72.png 250w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols2.png 375w"
+                                width="300"></a></p>
+                        <p>The radius option controls the radius of the cylinder&nbsp;that is drawn about the Y-axis.&nbsp;The
+                            main affect of this setting is to&nbsp;change parallax errors&nbsp;for objects that are
+                            closer or farther from the&nbsp;camera (objects landing exactly on the cylinder will have no
+                            blending errors). For objects past several meters, a very large radius should lead to the&nbsp;fewest
+                            blending errors.&nbsp;The units are in&nbsp;millimeters * 1000.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_STITCHING_RADIUS,VALUE) to&nbsp;change this value.</p>
+                        <h3><span id="Theta">Theta</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols3.png"><img
+                                alt="cylbcontrols3"
+                                class="alignnone size-medium wp-image-801"
+                                height="83" sizes="(max-width: 300px) 100vw, 300px"
+                                src="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols3-300x83.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols3-300x83.png 300w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols3-256x71.png 256w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols3-250x69.png 250w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols3.png 370w"
+                                width="300"></a></p>
+                        <p>This value controls the&nbsp;position (angle) on the cylinder that&nbsp;is used as the
+                            started of the unwrapping.&nbsp;It varies from 0 to 360 degrees, and changes&nbsp;where the
+                            left edge of the resulting image corresponds to on the&nbsp;cylinder.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_STITCHING_ROTATION,VALUE) to change this value.</p>
+                        <h3><span id="Scale">Scale</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols4.png"><img
+                                alt="cylbcontrols4"
+                                class="alignnone size-medium wp-image-802"
+                                height="83" sizes="(max-width: 300px) 100vw, 300px"
+                                src="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols4-300x83.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols4-300x83.png 300w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols4-256x70.png 256w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols4-250x69.png 250w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols4.png 372w"
+                                width="300"></a></p>
+                        <p>The scale option changes the&nbsp;width of the resulting image&nbsp;relative to the height.
+                            The units are in scale * 1000, where scale of 2 means&nbsp;width = original_width/2, height
+                            = original_height.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_STITCHING_SCALEWIDTH,VALUE) to change this value.</p>
+                        <h3><span id="Crop">Crop</span></h3>
+                        <p><a href="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols5.png"><img
+                                alt="cylbcontrols5"
+                                class="alignnone size-medium wp-image-803"
+                                height="79" sizes="(max-width: 300px) 100vw, 300px"
+                                src="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols5-300x79.png"
+                                srcset="{{site.baseurl}}/assets/images/knowledgebase/cylbcontrols5-300x79.png 300w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols5-256x67.png 256w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols5-250x66.png 250w, {{site.baseurl}}/assets/images/knowledgebase/cylbcontrols5.png 370w"
+                                width="300"></a></p>
+                        <p>The crop option should be zero or one, and indicates&nbsp;whether to crop the&nbsp;resulting
+                            image so that there are no jagged edges on the top/bottom of the image. Typically sensors
+                            are not exactly aligned on the&nbsp;X-Z plane,&nbsp;which leads to a trade-off of wasted
+                            image vs jagged edges.</p>
+                        <p>Use occamSetDeviceValuei(device,OCCAM_STITCHING_CROP,VALUE) to change this value.</p>
+                        <p>&nbsp;</p>
+                        <p></p></div>
+                </article>
+
+            </section><!-- /.entry -->
+
+        </article><!-- /.post -->
+
+    </section><!-- /#main -->
+
+</div>
